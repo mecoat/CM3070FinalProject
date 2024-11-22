@@ -39,6 +39,13 @@ public class CollectorControl : MonoBehaviour
         if (Input.GetButtonDown("Fire2"))
         {
             playerMove = false;
+
+            dropCollector();
         }
+    }
+
+    private void dropCollector()
+    {
+        Debug.Log("Dropping collector");
     }
 }
