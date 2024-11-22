@@ -9,6 +9,9 @@ public class CollectorControl : MonoBehaviour
     [SerializeField]
     float movementSpeed;
 
+    //[SerializeField]
+    private bool playerMove = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +31,14 @@ public class CollectorControl : MonoBehaviour
 
         Vector3 newPos = new Vector3(movementX, 0, movementZ) * movementSpeed * Time.deltaTime;
 
-        rb.MovePosition(transform.position + newPos);
+        if (playerMove)
+        {
+            rb.MovePosition(transform.position + newPos);
+        }
 
+        if (Input.GetButtonDown("Fire2"))
+        {
+            playerMove = false;
+        }
     }
 }
