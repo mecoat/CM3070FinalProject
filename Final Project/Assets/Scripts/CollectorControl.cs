@@ -45,6 +45,15 @@ public class CollectorControl : MonoBehaviour
 
             dropCollector();
         }
+
+        if (!playerMove)
+        {
+            if (isDropping)
+            {
+                Vector3 dropPos = new Vector3(0, -5, 0) * movementSpeed * Time.deltaTime;
+                rb.MovePosition(transform.position + dropPos);
+            }
+        }
     }
 
     private void dropCollector()
