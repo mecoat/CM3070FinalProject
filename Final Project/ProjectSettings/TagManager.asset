@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Collector
+  - Object
+  - Floor
+  - Wall
   layers:
   - Default
   - TransparentFX

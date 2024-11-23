@@ -9,8 +9,11 @@ public class CollectorControl : MonoBehaviour
     [SerializeField]
     float movementSpeed;
 
-    //[SerializeField]
     private bool playerMove = true;
+
+    private bool isDropping = false;
+
+    private bool hasCollected = false;
 
     // Start is called before the first frame update
     void Start()
@@ -47,5 +50,21 @@ public class CollectorControl : MonoBehaviour
     private void dropCollector()
     {
         Debug.Log("Dropping collector");
+        isDropping = true;
+
+
+
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log(collision.gameObject.tag);
+
+        if (collision.gameObject.tag == "Object")
+        {
+            hasCollected = true;
+        }
+
+        Debug.Log(hasCollected);
     }
 }
