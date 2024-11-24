@@ -15,9 +15,14 @@ public class CollectorControl : MonoBehaviour
 
     private bool hasCollected = false;
 
+    private bool hasDeposited = false;
+
     private GameObject tray;
     private Vector3 trayLoc;
     private Vector3 trayPos;
+
+  
+
 
     // Start is called before the first frame update
     void Start()
@@ -26,16 +31,8 @@ public class CollectorControl : MonoBehaviour
 
         tray = GameObject.Find("Tray");
         trayLoc = tray.transform.position;
-        float x = trayLoc.x;
-        Debug.Log(x);
-        //trayPos = new Vector3(x, 0, trayLoc.z) * movementSpeed * Time.deltaTime;
-        //trayPos = new Vector3(tray.transform.position.x, 0, tray.transform.position.z) * movementSpeed * Time.deltaTime;
-        trayPos = new Vector3(tray.transform.position.x, 0, tray.transform.position.z);
-        Debug.Log(tray);
-        Debug.Log(trayLoc);
-        Debug.Log(trayLoc.z);
-        Debug.Log(trayLoc.x);
-        Debug.Log(trayPos);
+        trayPos = new Vector3(tray.transform.position.x, 0, tray.transform.position.z) * movementSpeed * Time.deltaTime;
+
     }
 
     // Update is called once per frame
@@ -78,18 +75,39 @@ public class CollectorControl : MonoBehaviour
 
                 if (rb.transform.position.y >= 9)
                 {
+                    rb.constraints = RigidbodyConstraints.FreezePositionY;
+
                     if (!hasCollected)
                     {
                         playerMove = true;
                         Debug.Log("return control to player");
                     }
+                    else if (!hasDeposited)
+                    {
+                        if (rb.transform.position.x <= trayLoc.x  && rb.transform.position.z <= trayLoc.z)
+                        {
+                            Debug.Log("taking object to tray");
+                            rb.MovePosition(transform.position + trayPos);
+
+                        }
+                        else
+                        {
+                            hasDeposited = true;
+                            Debug.Log("returning to arena");
+
+                            rb.MovePosition(transform.position - trayPos);
+
+                        }
+
+
+                    }
                     else
                     {
-                        Debug.Log("taking object to tray");
-                        //rb.MovePosition(transform.position + trayPos);
-                        //trayPos = new Vector3(trayLoc.x, 0, trayLoc.z) * movementSpeed * Time.deltaTime;
-                        Debug.Log(trayPos);
-                        rb.MovePosition(transform.position + trayPos);
+                        playerMove = true;
+                        Debug.Log("return control to player");
+                        hasDeposited = false;
+                        hasCollected = false;
+
 
                     }
                 }
@@ -99,6 +117,9 @@ public class CollectorControl : MonoBehaviour
 
     private void dropCollector()
     {
+        rb.constraints = RigidbodyConstraints.None;
+        rb.constraints = RigidbodyConstraints.FreezeRotation;
+
         Debug.Log("Dropping collector");
         isDropping = true;
     }
