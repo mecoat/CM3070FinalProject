@@ -15,10 +15,18 @@ public class CollectorControl : MonoBehaviour
 
     private bool hasCollected = false;
 
+    private GameObject tray;
+    private Vector3 trayLoc;
+    private Vector3 trayPos;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+
+        tray = GameObject.Find("Tray");
+        trayLoc = tray.transform.position;
+        trayPos = new Vector3(trayLoc.x, 0, trayLoc.y) * movementSpeed * Time.deltaTime;
     }
 
     // Update is called once per frame
@@ -68,6 +76,8 @@ public class CollectorControl : MonoBehaviour
                     else
                     {
                         Debug.Log("taking object to tray");
+                        rb.MovePosition(transform.position + trayPos);
+
                     }
                 }
             }
