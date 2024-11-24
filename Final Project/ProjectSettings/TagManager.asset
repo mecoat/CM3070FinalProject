@@ -8,6 +8,7 @@ TagManager:
   - Object
   - Floor
   - Wall
+  - Tray
   layers:
   - Default
   - TransparentFX

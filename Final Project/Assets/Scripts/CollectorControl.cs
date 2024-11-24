@@ -52,6 +52,24 @@ public class CollectorControl : MonoBehaviour
             {
                 Vector3 dropPos = new Vector3(0, -5, 0) * movementSpeed * Time.deltaTime;
                 rb.MovePosition(transform.position + dropPos);
+            } 
+            else if (hasCollected || !isDropping)
+            {
+                Vector3 raisePos = new Vector3(0, 3, 0) * movementSpeed * Time.deltaTime;
+                rb.MovePosition(transform.position + raisePos);
+
+                if (rb.transform.position.y >= 9)
+                {
+                    if (!hasCollected)
+                    {
+                        playerMove = true;
+                        Debug.Log("return control to player");
+                    }
+                    else
+                    {
+                        Debug.Log("taking object to tray");
+                    }
+                }
             }
         }
     }
@@ -60,9 +78,6 @@ public class CollectorControl : MonoBehaviour
     {
         Debug.Log("Dropping collector");
         isDropping = true;
-
-
-
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -72,8 +87,14 @@ public class CollectorControl : MonoBehaviour
         if (collision.gameObject.tag == "Object")
         {
             hasCollected = true;
+            isDropping = false;
+            Debug.Log("collecting object");
+        }
+        else if (isDropping)
+        {
+            isDropping = false;
+            Debug.Log("Dropped, no object");
         }
 
-        Debug.Log(hasCollected);
     }
 }
