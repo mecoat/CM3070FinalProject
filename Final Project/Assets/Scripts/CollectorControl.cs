@@ -26,7 +26,16 @@ public class CollectorControl : MonoBehaviour
 
         tray = GameObject.Find("Tray");
         trayLoc = tray.transform.position;
-        trayPos = new Vector3(trayLoc.x, 0, trayLoc.y) * movementSpeed * Time.deltaTime;
+        float x = trayLoc.x;
+        Debug.Log(x);
+        //trayPos = new Vector3(x, 0, trayLoc.z) * movementSpeed * Time.deltaTime;
+        //trayPos = new Vector3(tray.transform.position.x, 0, tray.transform.position.z) * movementSpeed * Time.deltaTime;
+        trayPos = new Vector3(tray.transform.position.x, 0, tray.transform.position.z);
+        Debug.Log(tray);
+        Debug.Log(trayLoc);
+        Debug.Log(trayLoc.z);
+        Debug.Log(trayLoc.x);
+        Debug.Log(trayPos);
     }
 
     // Update is called once per frame
@@ -37,6 +46,7 @@ public class CollectorControl : MonoBehaviour
 
     private void FixedUpdate()
     {
+
         float movementZ = Input.GetAxisRaw("Vertical");
         float movementX = Input.GetAxisRaw("Horizontal");
 
@@ -76,6 +86,9 @@ public class CollectorControl : MonoBehaviour
                     else
                     {
                         Debug.Log("taking object to tray");
+                        //rb.MovePosition(transform.position + trayPos);
+                        //trayPos = new Vector3(trayLoc.x, 0, trayLoc.z) * movementSpeed * Time.deltaTime;
+                        Debug.Log(trayPos);
                         rb.MovePosition(transform.position + trayPos);
 
                     }
