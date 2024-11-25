@@ -4,35 +4,42 @@ using UnityEngine;
 
 public class CollectorControl : MonoBehaviour
 {
+    //nolder for the collector rigidbody values
     Rigidbody rb;
 
+    //movement speed variable (adjustable from within Unity)
     [SerializeField]
     float movementSpeed;
 
+    //boolean to indicate if control of collector is wit the player (true) or not (false)
     private bool playerMove = true;
 
+    //boolean to indicate if the collector is dropping from its position
     private bool isDropping = false;
 
+    //boolean to indiicate if the collector as collected an object
     private bool hasCollected = false;
 
+    //boolean to indicate the object has been deposited in the tray
     private bool hasDeposited = false;
 
+    //values to identify and locate the tray
     private GameObject tray;
     private Vector3 trayLoc;
     private Vector3 trayPos;
 
-  
-
-
-    // Start is called before the first frame update
+      // Start is called before the first frame update
     void Start()
     {
+        //initiation of the rb variable of the rigidbody on the object
         rb = GetComponent<Rigidbody>();
 
+        //initiate the tray values by finding the tray...
         tray = GameObject.Find("Tray");
+        //...getting the tray location...
         trayLoc = tray.transform.position;
-        trayPos = new Vector3(tray.transform.position.x, 0, tray.transform.position.z) * movementSpeed * Time.deltaTime;
-
+        //...and changing it to a more usable movement value
+        trayPos = new Vector3(tray.transform.position.x, 0, tray.transform.position.z) * movementSpeed * Time.deltaTime; 
     }
 
     // Update is called once per frame
@@ -43,14 +50,18 @@ public class CollectorControl : MonoBehaviour
 
     private void FixedUpdate()
     {
-
-        float movementZ = Input.GetAxisRaw("Vertical");
-        float movementX = Input.GetAxisRaw("Horizontal");
-
-        Vector3 newPos = new Vector3(movementX, 0, movementZ) * movementSpeed * Time.deltaTime;
-
+        
+        //if the playerMove variable is true (player control is on)
         if (playerMove)
         {
+            //Get the values of the player input and assign them to variables (raw means that there is no drift when the player stops pressing the button)
+            float movementZ = Input.GetAxisRaw("Vertical");
+            float movementX = Input.GetAxisRaw("Horizontal");
+
+            //create a vector based upon the playerinput values and movement speed, with a calutlation for delta time (to allow for different frame rates)
+            Vector3 newPos = new Vector3(movementX, 0, movementZ) * movementSpeed * Time.deltaTime;
+
+            //move the controller rigindbody according to the calculated vector
             rb.MovePosition(transform.position + newPos);
         }
 
