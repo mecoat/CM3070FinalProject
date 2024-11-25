@@ -97,7 +97,9 @@ public class CollectorControl : MonoBehaviour
                 //if the rigib body y position  is greater than or equal to 9 (home height)
                 if (rb.transform.position.y >= 9)
                 {
-                    //prevent the Reigid body from moving more in y direction
+                    //move to exactly 9 high (for consistency for player)
+                    rb.position = new Vector3(rb.transform.position.x, 9, rb.transform.position.z);
+                    //prevent the Rigid body from moving more in y direction
                     rb.constraints = RigidbodyConstraints.FreezePositionY;
 
                     //if it hasn't collected
