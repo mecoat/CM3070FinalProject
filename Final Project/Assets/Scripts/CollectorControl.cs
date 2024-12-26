@@ -24,9 +24,9 @@ public class CollectorControl : MonoBehaviour
     private bool hasDeposited = false;
 
     //values to identify and locate the tray
-    private GameObject tray;
-    private Vector3 trayLoc;
-    private Vector3 trayPos;
+    //private GameObject tray;
+    //private Vector3 trayLoc;
+    //private Vector3 trayPos;
 
       // Start is called before the first frame update
     void Start()
@@ -35,11 +35,11 @@ public class CollectorControl : MonoBehaviour
         rb = GetComponent<Rigidbody>();
 
         //initiate the tray values by finding the tray...
-        tray = GameObject.Find("Tray");
+        //tray = GameObject.Find("Tray");
         //...getting the tray location...
-        trayLoc = tray.transform.position;
+        //trayLoc = tray.transform.position;
         //...and changing it to a more usable movement value
-        trayPos = new Vector3(tray.transform.position.x, 0, tray.transform.position.z) * movementSpeed * Time.deltaTime; 
+        //trayPos = new Vector3(tray.transform.position.x, 0, tray.transform.position.z) * movementSpeed * Time.deltaTime; 
     }
 
     // Update is called once per frame
@@ -75,7 +75,7 @@ public class CollectorControl : MonoBehaviour
             dropCollector();
         }
 
-        //if the playerMove variable of false (plaer control is off)
+        //if the playerMove variable of false (player control is off)
         if (!playerMove)
         {
             // if variable isDropping is true (collecor is dropping)
@@ -94,7 +94,7 @@ public class CollectorControl : MonoBehaviour
                 //adjust the position of the collector RigidBody by adding the new variable to current location vector
                 rb.MovePosition(transform.position + raisePos);
 
-                //if the rigib body y position  is greater than or equal to 9 (home height)
+                //if the rigid body y position is greater than or equal to 9 (home height)
                 if (rb.transform.position.y >= 9)
                 {
                     //move to exactly 9 high (for consistency for player)
@@ -102,50 +102,53 @@ public class CollectorControl : MonoBehaviour
                     //prevent the Rigid body from moving more in y direction
                     rb.constraints = RigidbodyConstraints.FreezePositionY;
 
-                    //if it hasn't collected
-                    if (!hasCollected)
-                    {
-                        //change playerMove to true (return control to player)
-                        playerMove = true;
-                        //output to console to show what's happening)
-                        Debug.Log("return control to player");
-                    }
-                    //otherwise if hasDeposited is false (there is an object on the collector)
-                    else if (!hasDeposited)
-                    {
-                        //if the position is not at the try yet
-                        if (rb.transform.position.x <= trayLoc.x  && rb.transform.position.z <= trayLoc.z)
-                        {
-                            //output to console to show what's happening)
-                            Debug.Log("taking object to tray");
-                            //move collector towards the tray
-                            rb.MovePosition(transform.position + trayPos);
-                        }
-                        //otherwise ... (it's reached the tray)
-                        else
-                        {
-                            //change has depostied to true (as objet will be put into try
-                            hasDeposited = true;
-                            //more to add here to actually deposit the object
+                    //return control to player 
+                    playerMove = true;
 
-                            //output to console to show what's happening)
-                            Debug.Log("returning to arena");
-                            //move away from the tray towards earlier position
-                            rb.MovePosition(transform.position - trayPos);
-                        }
-                    }
-                    //otherwise... (hasDeposited is true)
-                    else
-                    {
+                    //if it hasn't collected
+                    //if (!hasCollected)
+                    //{
                         //change playerMove to true (return control to player)
-                        playerMove = true;
+                      //  playerMove = true;
                         //output to console to show what's happening)
-                        Debug.Log("return control to player");
+                        //Debug.Log("return control to player");
+                    //}
+                    //otherwise if hasDeposited is false (there is an object on the collector)
+                    //else if (!hasDeposited)
+                    //{
+                        //if the position is not at the try yet
+                        //if (rb.transform.position.x <= trayLoc.x  && rb.transform.position.z <= trayLoc.z)
+                        //{
+                          //  //output to console to show what's happening)
+                            //Debug.Log("taking object to tray");
+                            ////move collector towards the tray
+                            //rb.MovePosition(transform.position + trayPos);
+                        //}
+                        //otherwise ... (it's reached the tray)
+                        //else
+                        //{
+                          //  //change has depostied to true (as objet will be put into try
+                            //hasDeposited = true;
+                            ////more to add here to actually deposit the object
+
+                            ////output to console to show what's happening)
+                            //Debug.Log("returning to arena");
+                            ////move away from the tray towards earlier position
+                            //rb.MovePosition(transform.position - trayPos);
+                        //}
+                    //}
+                    //otherwise... (hasDeposited is true)
+                    //else
+                    //{
+                        //change playerMove to true (return control to player)
+                      //  playerMove = true;
+                        //output to console to show what's happening)
+                        //Debug.Log("return control to player");
                         //change hasDeposited to false (revert to default
-                        hasDeposited = false;
+                        //hasDeposited = false;
                         //change has collected to false (refert to default)
-                        hasCollected = false;
-                    }
+                        //hasCollected = false;
+                    //}
                 }
             }
         }
