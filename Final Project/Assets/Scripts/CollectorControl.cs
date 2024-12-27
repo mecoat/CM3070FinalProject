@@ -68,6 +68,7 @@ public class CollectorControl : MonoBehaviour
             //otherwise if there is an object...
             else
             {
+                //drop the object
                 dropObject();
             }
 
@@ -76,7 +77,7 @@ public class CollectorControl : MonoBehaviour
         //if the playerMove variable of false (player control is off)
         if (!playerMove)
         {
-            // if variable isDropping is true (collecor is dropping)
+            // if variable isDropping is true (collector is dropping)
             if (isDropping)
             {
                 //create a vector with a negative y value (downwards)
@@ -84,8 +85,8 @@ public class CollectorControl : MonoBehaviour
                 //adjust the position of the collector RigidBody by adding the new variable to current location vector
                 rb.MovePosition(transform.position + dropPos);
             }
-            //otherwise, if either hasObject (Collector touched an Object) or isn't dropping (touched the floor)
-            else if (hasObject || !isDropping)
+            //otherwise (collector is not dropping (and needs to rise)...
+            else 
             {
                 //create a vector with a positive y value (upwards)
                 Vector3 raisePos = new Vector3(0, 3, 0) * movementSpeed * Time.deltaTime;
@@ -111,50 +112,6 @@ public class CollectorControl : MonoBehaviour
                     //return control to player 
                     playerMove = true;
 
-                    //if it hasn't collected
-                    //if (!hasObject)
-                    //{
-                    //change playerMove to true (return control to player)
-                    //  playerMove = true;
-                    //output to console to show what's happening)
-                    //Debug.Log("return control to player");
-                    //}
-                    //otherwise if hasDeposited is false (there is an object on the collector)
-                    //else if (!hasDeposited)
-                    //{
-                    //if the position is not at the try yet
-                    //if (rb.transform.position.x <= trayLoc.x  && rb.transform.position.z <= trayLoc.z)
-                    //{
-                    //  //output to console to show what's happening)
-                    //Debug.Log("taking object to tray");
-                    ////move collector towards the tray
-                    //rb.MovePosition(transform.position + trayPos);
-                    //}
-                    //otherwise ... (it's reached the tray)
-                    //else
-                    //{
-                    //  //change has depostied to true (as objet will be put into try
-                    //hasDeposited = true;
-                    ////more to add here to actually deposit the object
-
-                    ////output to console to show what's happening)
-                    //Debug.Log("returning to arena");
-                    ////move away from the tray towards earlier position
-                    //rb.MovePosition(transform.position - trayPos);
-                    //}
-                    //}
-                    //otherwise... (hasDeposited is true)
-                    //else
-                    //{
-                    //change playerMove to true (return control to player)
-                    //  playerMove = true;
-                    //output to console to show what's happening)
-                    //Debug.Log("return control to player");
-                    //change hasDeposited to false (revert to default
-                    //hasDeposited = false;
-                    //change has collected to false (refert to default)
-                    //hasObject = false;
-                    //}
                 }
             }
         }
@@ -170,6 +127,7 @@ public class CollectorControl : MonoBehaviour
 
         //output to console to show what's happening)
         Debug.Log("Dropping collector");
+
         //chage isDroppping variable to true to indicate that the collector is dropping
         isDropping = true;
     }
