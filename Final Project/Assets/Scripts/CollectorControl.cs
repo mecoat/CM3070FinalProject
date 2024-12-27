@@ -61,7 +61,7 @@ public class CollectorControl : MonoBehaviour
             //create a vector based upon the playerinput values and movement speed, with a calutlation for delta time (to allow for different frame rates)
             Vector3 newPos = new Vector3(movementX, 0, movementZ) * movementSpeed * Time.deltaTime;
 
-            //move the controller rigindbody according to the calculated vector
+            //move the controller rigidbody according to the calculated vector
             rb.MovePosition(transform.position + newPos);
         }
 
@@ -99,7 +99,15 @@ public class CollectorControl : MonoBehaviour
                 {
                     //move to exactly 9 high (for consistency for player)
                     rb.position = new Vector3(rb.transform.position.x, 9, rb.transform.position.z);
-                    //prevent the Rigid body from moving more in y direction
+
+                    //ensure that collector is properly returned to player control with no drift or rotation...
+                    //prevent the Rigid body from moving at all (reset anything that may have been added to the collector motion/rotation)
+                    rb.constraints = RigidbodyConstraints.FreezeAll;
+                    //remove all constrainst (so the player can have movement again)
+                    rb.constraints = RigidbodyConstraints.None;
+                    //prevent the Rigid body from rotating (so that an uneven cintact will not turn the collector)
+                    rb.constraints = RigidbodyConstraints.FreezeRotation;
+                    //prevent the Rigid body from moving more in y direction (hold the collector at the correct height (and prevent gravity from dropping it))
                     rb.constraints = RigidbodyConstraints.FreezePositionY;
 
                     //return control to player 
