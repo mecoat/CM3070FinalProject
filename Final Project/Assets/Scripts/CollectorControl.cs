@@ -18,28 +18,16 @@ public class CollectorControl : MonoBehaviour
     private bool isDropping = false;
 
     //boolean to indiicate if the collector as collected an object
-    private bool hasCollected = false;
+    private bool hasObject = false;
 
     //boolean to indicate the object has been deposited in the tray
-    private bool hasDeposited = false;
-
-    //values to identify and locate the tray
-    //private GameObject tray;
-    //private Vector3 trayLoc;
-    //private Vector3 trayPos;
+    //private bool hasDeposited = false;
 
       // Start is called before the first frame update
     void Start()
     {
         //initiation of the rb variable of the rigidbody on the object
         rb = GetComponent<Rigidbody>();
-
-        //initiate the tray values by finding the tray...
-        //tray = GameObject.Find("Tray");
-        //...getting the tray location...
-        //trayLoc = tray.transform.position;
-        //...and changing it to a more usable movement value
-        //trayPos = new Vector3(tray.transform.position.x, 0, tray.transform.position.z) * movementSpeed * Time.deltaTime; 
     }
 
     // Update is called once per frame
@@ -68,26 +56,37 @@ public class CollectorControl : MonoBehaviour
         //if the player presses Fire2 button (Left Alt)
         if (Input.GetButtonDown("Fire2"))
         {
-            //chnge playerMove to false (which stops player control)
-            playerMove = false;
+            //if the collector has no object...
+            if (!hasObject)
+            {
+                //chnge playerMove to false (which stops player control)
+                playerMove = false;
 
-            //trigger the dropCollector function
-            dropCollector();
+                //trigger the dropCollector function
+                dropCollector();
+            }
+            //otherwise if there is an object...
+            else
+            {
+                //drop the object
+                dropObject();
+            }
+
         }
 
         //if the playerMove variable of false (player control is off)
         if (!playerMove)
         {
-            // if variable isDropping is true (collecor is dropping)
+            // if variable isDropping is true (collector is dropping)
             if (isDropping)
             {
                 //create a vector with a negative y value (downwards)
                 Vector3 dropPos = new Vector3(0, -5, 0) * movementSpeed * Time.deltaTime;
                 //adjust the position of the collector RigidBody by adding the new variable to current location vector
                 rb.MovePosition(transform.position + dropPos);
-            } 
-            //otherwise, if either hasCollected (Collector touched an Object) or isn't dropping (touched the floor)
-            else if (hasCollected || !isDropping)
+            }
+            //otherwise (collector is not dropping (and needs to rise)...
+            else 
             {
                 //create a vector with a positive y value (upwards)
                 Vector3 raisePos = new Vector3(0, 3, 0) * movementSpeed * Time.deltaTime;
@@ -113,50 +112,6 @@ public class CollectorControl : MonoBehaviour
                     //return control to player 
                     playerMove = true;
 
-                    //if it hasn't collected
-                    //if (!hasCollected)
-                    //{
-                        //change playerMove to true (return control to player)
-                      //  playerMove = true;
-                        //output to console to show what's happening)
-                        //Debug.Log("return control to player");
-                    //}
-                    //otherwise if hasDeposited is false (there is an object on the collector)
-                    //else if (!hasDeposited)
-                    //{
-                        //if the position is not at the try yet
-                        //if (rb.transform.position.x <= trayLoc.x  && rb.transform.position.z <= trayLoc.z)
-                        //{
-                          //  //output to console to show what's happening)
-                            //Debug.Log("taking object to tray");
-                            ////move collector towards the tray
-                            //rb.MovePosition(transform.position + trayPos);
-                        //}
-                        //otherwise ... (it's reached the tray)
-                        //else
-                        //{
-                          //  //change has depostied to true (as objet will be put into try
-                            //hasDeposited = true;
-                            ////more to add here to actually deposit the object
-
-                            ////output to console to show what's happening)
-                            //Debug.Log("returning to arena");
-                            ////move away from the tray towards earlier position
-                            //rb.MovePosition(transform.position - trayPos);
-                        //}
-                    //}
-                    //otherwise... (hasDeposited is true)
-                    //else
-                    //{
-                        //change playerMove to true (return control to player)
-                      //  playerMove = true;
-                        //output to console to show what's happening)
-                        //Debug.Log("return control to player");
-                        //change hasDeposited to false (revert to default
-                        //hasDeposited = false;
-                        //change has collected to false (refert to default)
-                        //hasCollected = false;
-                    //}
                 }
             }
         }
@@ -172,6 +127,7 @@ public class CollectorControl : MonoBehaviour
 
         //output to console to show what's happening)
         Debug.Log("Dropping collector");
+
         //chage isDroppping variable to true to indicate that the collector is dropping
         isDropping = true;
     }
@@ -185,8 +141,8 @@ public class CollectorControl : MonoBehaviour
         //if the collision with with something that has the tag of "Object"
         if (collision.gameObject.tag == "Object")
         {
-            //change hasCollected to true (indicates that the object is collected)
-            hasCollected = true;
+            //change hasObject to true (indicates that the object is collected)
+            hasObject = true;
             //More to add here to actually collect the object
 
             //change isdropping to false (we do not want to the object to continue down)
@@ -202,5 +158,19 @@ public class CollectorControl : MonoBehaviour
             //output to console to show what's happening)
             Debug.Log("Dropped, no object");
         }
+    }
+
+    //function to drop the object fronm the collector
+    private void dropObject()
+    {
+
+        //output to console to show what's happening)
+        Debug.Log("Dropping object");
+
+        // code here to drop the object
+
+
+        //chage hasObject variable to false to indicate that the object has been dropped
+        hasObject = false;
     }
 }
