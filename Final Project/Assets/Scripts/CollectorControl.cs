@@ -94,10 +94,12 @@ public class CollectorControl : MonoBehaviour
                 rb.MovePosition(transform.position + raisePos);
 
                 //if the rigid body y position is greater than or equal to 9 (home height)
-                if (rb.transform.position.y >= 9)
-                {
+                if (rb.transform.position.y >= 5)
+                //if (rb.transform.position.y >= 9)
+                    {
                     //move to exactly 9 high (for consistency for player)
-                    rb.position = new Vector3(rb.transform.position.x, 9, rb.transform.position.z);
+                    //rb.position = new Vector3(rb.transform.position.x, 9, rb.transform.position.z);
+                    rb.position = new Vector3(rb.transform.position.x, 5f, rb.transform.position.z);
 
                     //ensure that collector is properly returned to player control with no drift or rotation...
                     //prevent the Rigid body from moving at all (reset anything that may have been added to the collector motion/rotation)
@@ -141,14 +143,23 @@ public class CollectorControl : MonoBehaviour
         //if the collision with with something that has the tag of "Object"
         if (collision.gameObject.tag == "Object")
         {
-            //change hasObject to true (indicates that the object is collected)
-            hasObject = true;
-            //More to add here to actually collect the object
 
-            //change isdropping to false (we do not want to the object to continue down)
-            isDropping = false;
-            //output to console to show what's happening)
-            Debug.Log("collecting object");
+            //check the collector hasn't already collected something 
+            if (!hasObject)
+            {
+                //change hasObject to true (indicates that the object is collected)
+                hasObject = true;
+                //More to add here to actually collect the object
+                Debug.Log(collision.gameObject);
+                collision.gameObject.GetComponent<CollectionObjects>().transferToCollector(this.gameObject);
+
+                //change isdropping to false (we do not want to the object to continue down)
+                isDropping = false;
+                //output to console to show what's happening)
+                Debug.Log("collecting object");
+            }
+
+            
         }
         //otherwise, if the collector isDropping (ie not moving sideways and colliding with walls...
         else if (isDropping)
