@@ -11,7 +11,7 @@ public class CollectionObjects : MonoBehaviour
     public void transferToCollector(GameObject obj)
     {
         transform.parent = obj.transform;
-        transform.localPosition = new Vector3(0f, 0f, 0.85f);
+        transform.localPosition = new Vector3(0f, 1f, 0.05f);
 
         //turn off gravity for the object
         rb.useGravity = false;
