@@ -94,20 +94,14 @@ public class CollectorControl : MonoBehaviour
                 rb.MovePosition(transform.position + raisePos);
 
                 //if the rigid body y position is greater than or equal to 9 (home height)
-                if (rb.transform.position.y >= 9)
-                {
+                if (rb.transform.position.y >= 5)
+                //if (rb.transform.position.y >= 9)
+                    {
                     //move to exactly 9 high (for consistency for player)
-                    rb.position = new Vector3(rb.transform.position.x, 9, rb.transform.position.z);
+                    //rb.position = new Vector3(rb.transform.position.x, 9, rb.transform.position.z);
+                    rb.position = new Vector3(rb.transform.position.x, 5f, rb.transform.position.z);
 
-                    //ensure that collector is properly returned to player control with no drift or rotation...
-                    //prevent the Rigid body from moving at all (reset anything that may have been added to the collector motion/rotation)
-                    rb.constraints = RigidbodyConstraints.FreezeAll;
-                    //remove all constrainst (so the player can have movement again)
-                    rb.constraints = RigidbodyConstraints.None;
-                    //prevent the Rigid body from rotating (so that an uneven cintact will not turn the collector)
-                    rb.constraints = RigidbodyConstraints.FreezeRotation;
-                    //prevent the Rigid body from moving more in y direction (hold the collector at the correct height (and prevent gravity from dropping it))
-                    rb.constraints = RigidbodyConstraints.FreezePositionY;
+                    resetConstraints();
 
                     //return control to player 
                     playerMove = true;
@@ -136,19 +130,28 @@ public class CollectorControl : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         //output the tag of the element collided with to the console
-        Debug.Log(collision.gameObject.tag);
+        //Debug.Log(collision.gameObject.tag);
 
-        //if the collision with with something that has the tag of "Object"
-        if (collision.gameObject.tag == "Object")
+        //if the collision with with something that has the tag of "Object" (and also is dropping (to prevent recollecting an object immediately on release)
+        if (collision.gameObject.tag == "Object"  && isDropping)
         {
-            //change hasObject to true (indicates that the object is collected)
-            hasObject = true;
-            //More to add here to actually collect the object
 
-            //change isdropping to false (we do not want to the object to continue down)
-            isDropping = false;
-            //output to console to show what's happening)
-            Debug.Log("collecting object");
+            //check the collector hasn't already collected something 
+            if (!hasObject)
+            {
+                //change hasObject to true (indicates that the object is collected)
+                hasObject = true;
+                //More to add here to actually collect the object
+                //Debug.Log(collision.gameObject);
+                collision.gameObject.GetComponent<CollectionObjects>().transferToCollector(this.gameObject);
+
+                //change isdropping to false (we do not want to the object to continue down)
+                isDropping = false;
+                //output to console to show what's happening)
+                Debug.Log("collecting object");
+            }
+
+            
         }
         //otherwise, if the collector isDropping (ie not moving sideways and colliding with walls...
         else if (isDropping)
@@ -168,9 +171,32 @@ public class CollectorControl : MonoBehaviour
         Debug.Log("Dropping object");
 
         // code here to drop the object
-
+        //Debug.Log(this.gameObject.GetComponentInChildren<CollectionObjects>());
+        this.gameObject.GetComponentInChildren<CollectionObjects>().dropFromCollector();
 
         //chage hasObject variable to false to indicate that the object has been dropped
         hasObject = false;
+
+
+        //move to exactly 9 high (for consistency for player)
+        //rb.position = new Vector3(rb.transform.position.x, 9, rb.transform.position.z);
+        rb.position = new Vector3(rb.transform.position.x, 5f, rb.transform.position.z);
+
+        resetConstraints();
+    }
+
+    //function to reset constraints after being affectedd externally
+    private void resetConstraints()
+    {
+        //ensure that collector is properly returned to player control with no drift or rotation...
+        //prevent the Rigid body from moving at all (reset anything that may have been added to the collector motion/rotation)
+        rb.constraints = RigidbodyConstraints.FreezeAll;
+        //remove all constrainst (so the player can have movement again)
+        rb.constraints = RigidbodyConstraints.None;
+        //prevent the Rigid body from rotating (so that an uneven cintact will not turn the collector)
+        rb.constraints = RigidbodyConstraints.FreezeRotation;
+        //prevent the Rigid body from moving more in y direction (hold the collector at the correct height (and prevent gravity from dropping it))
+        rb.constraints = RigidbodyConstraints.FreezePositionY;
+        rb.transform.rotation = new Quaternion(0f, 0f, 0f, 0f); //resets rotation
     }
 }
