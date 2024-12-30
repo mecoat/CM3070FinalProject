@@ -10,25 +10,24 @@ public class CollectionObjects : MonoBehaviour
 
     public void transferToCollector(GameObject obj)
     {
+        //add the object to the collector (becoming a child of the collector)
         transform.SetParent(obj.transform, true);
-        transform.localPosition = new Vector3(0f, -1.5f, 0f);
+        
+        //transform.localPosition = new Vector3(0f, -1.5f, 0f);
 
+        //diasble the relevant rigidbody elements so that it moves with the collector
         rb.isKinematic = true;
         rb.detectCollisions = false;
+    }
 
+    public void dropFromCollector()
+    {
+        //remove the object from the collector as parent
+        transform.SetParent(null);
 
-        //transform.parent = obj.transform;
-        //transform.localPosition = new Vector3(0f, 1f, 0.05f);
-
-        //turn off gravity for the object
-        //rb.useGravity = false;
-
-        //prevent the Rigid body from moving at all (reset anything that may have been added to the collector motion/rotation)
-        //rb.constraints = RigidbodyConstraints.FreezeAll;
-        //remove all constrainst (so the player can have movement again)
-        //rb.constraints = RigidbodyConstraints.None;
-        //prevent the Rigid body from rotating (so that an uneven cintact will not turn the collector)
-        //rb.constraints = RigidbodyConstraints.FreezeRotation;
+        //re-enable the rigidbody to enable it to fall from the collector
+        rb.isKinematic = false;
+        rb.detectCollisions = true;
     }
 
 
