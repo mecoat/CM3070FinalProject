@@ -120,7 +120,7 @@ public class CollectorControl : MonoBehaviour
         rb.constraints = RigidbodyConstraints.FreezeRotation;
 
         //output to console to show what's happening)
-        Debug.Log("Dropping collector");
+        //Debug.Log("Dropping collector");
 
         //chage isDroppping variable to true to indicate that the collector is dropping
         isDropping = true;
@@ -148,7 +148,7 @@ public class CollectorControl : MonoBehaviour
                 //change isdropping to false (we do not want to the object to continue down)
                 isDropping = false;
                 //output to console to show what's happening)
-                Debug.Log("collecting object");
+                //Debug.Log("collecting object");
             }
 
             
@@ -159,7 +159,7 @@ public class CollectorControl : MonoBehaviour
             //change isdropping to false (we do not want to the object to continue down)
             isDropping = false;
             //output to console to show what's happening)
-            Debug.Log("Dropped, no object");
+            //Debug.Log("Dropped, no object");
         }
     }
 
@@ -168,7 +168,7 @@ public class CollectorControl : MonoBehaviour
     {
 
         //output to console to show what's happening)
-        Debug.Log("Dropping object");
+        //Debug.Log("Dropping object");
 
         // code here to drop the object
         //Debug.Log(this.gameObject.GetComponentInChildren<CollectionObjects>());
@@ -200,3 +200,4 @@ public class CollectorControl : MonoBehaviour
         rb.transform.rotation = new Quaternion(0f, 0f, 0f, 0f); //resets rotation
     }
 }
+
