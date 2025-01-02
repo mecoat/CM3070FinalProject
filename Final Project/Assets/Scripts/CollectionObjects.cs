@@ -62,6 +62,10 @@ public class CollectionObjects : MonoBehaviour
 
                 isDropping = false;
                 Debug.Log("object dropping = " + isDropping);
+
+                //add the object back to the Objects object
+                GameObject obj = GameObject.Find("TrayObjects");
+                transform.SetParent(obj.transform, true);
             }
             else if (trigger.name == "ArenaTrigger")
             {
@@ -70,7 +74,7 @@ public class CollectionObjects : MonoBehaviour
                 isDropping = false;
                 Debug.Log("object dropping = " + isDropping);
 
-                //add the object ack to the Objects object
+                //add the object back to the Objects object
                 GameObject obj = GameObject.Find("Objects");
                 transform.SetParent(obj.transform, true);
             }
