@@ -44,4 +44,14 @@ public class CollectionObjects : MonoBehaviour
     {
         
     }
+
+    private void OnTriggerEnter(Collider trigger)
+    {
+        Debug.Log(trigger);
+
+        if (trigger.name == "TrayTrigger")
+        {
+            Debug.Log("in the tray");
+        }
+    }
 }
