@@ -28,8 +28,6 @@ public class TrayChecker : MonoBehaviour
 
             for (int i = 1; i < maxObjects; i++)
             {
-                Debug.Log(this.transform.GetChild(i).gameObject.name);
-                Debug.Log(this.transform.GetChild(i - 1).gameObject.name);
 
                 if (this.transform.GetChild(i).gameObject.name != this.transform.GetChild(i - 1).gameObject.name)
                 {
@@ -39,11 +37,25 @@ public class TrayChecker : MonoBehaviour
 
             if (match == false )
             {
+                //end game - needs to be replaced to actually end the game
                 Debug.Log("Game over");
-            } else if (match == true)
+            } 
+            else if (match == true)
             {
-                Debug.Log("Successful match");
+                //Debug.Log("Successful match");
+
+                //iterate through the matched objects
+                for (int i = 0; i < maxObjects; i++)
+                {
+                    //log the match - needs to be replaced with working code to acually log this
+                    Debug.Log("logging : " + this.transform.GetChild(i).gameObject.name);
+
+                    //remmove from scene
+                    this.transform.GetChild(i).gameObject.GetComponent<CollectionObjects>().destroySelf();
+                }
             }
         }
     }
+
+    
 }

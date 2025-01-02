@@ -33,7 +33,7 @@ public class CollectionObjects : MonoBehaviour
         rb.detectCollisions = true;
 
         isDropping = true;
-        Debug.Log("object dropping = " + isDropping);
+        //Debug.Log("object dropping = " + isDropping);
     }
 
 
@@ -53,26 +53,26 @@ public class CollectionObjects : MonoBehaviour
 
     private void OnTriggerEnter(Collider trigger)
     {
-        Debug.Log(trigger);
+        //Debug.Log(trigger);
         if (isDropping)
         {
             if (trigger.name == "TrayTrigger")
             {
-                Debug.Log("in the tray");
+                //Debug.Log("in the tray");
 
                 isDropping = false;
-                Debug.Log("object dropping = " + isDropping);
+                //Debug.Log("object dropping = " + isDropping);
 
-                //add the object back to the Objects object
+                //add the object into the trayObjects object
                 GameObject obj = GameObject.Find("TrayObjects");
                 transform.SetParent(obj.transform, true);
             }
             else if (trigger.name == "ArenaTrigger")
             {
-                Debug.Log("in the arena");
+                //Debug.Log("in the arena");
 
                 isDropping = false;
-                Debug.Log("object dropping = " + isDropping);
+                //Debug.Log("object dropping = " + isDropping);
 
                 //add the object back to the Objects object
                 GameObject obj = GameObject.Find("Objects");
@@ -80,5 +80,10 @@ public class CollectionObjects : MonoBehaviour
             }
         }
         
+    }
+
+    public void destroySelf()
+    {
+        Destroy(gameObject);
     }
 }
