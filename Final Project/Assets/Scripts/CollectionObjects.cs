@@ -52,6 +52,9 @@ public class CollectionObjects : MonoBehaviour
         if (trigger.name == "TrayTrigger")
         {
             Debug.Log("in the tray");
+        } else if (trigger.name == "ArenaTrigger"){
+            Debug.Log("in the arena");
+
         }
     }
 }
