@@ -8,6 +8,9 @@ public class CollectionObjects : MonoBehaviour
     //nolder for the object rigidbody values
     Rigidbody rb;
 
+    //bool to hold the dropping status of the object
+    private bool isDropping = false;
+
     public void transferToCollector(GameObject obj)
     {
         //add the object to the collector (becoming a child of the collector)
@@ -28,6 +31,9 @@ public class CollectionObjects : MonoBehaviour
         //re-enable the rigidbody to enable it to fall from the collector
         rb.isKinematic = false;
         rb.detectCollisions = true;
+
+        isDropping = true;
+        Debug.Log("object dropping = " + isDropping);
     }
 
 
@@ -48,13 +54,23 @@ public class CollectionObjects : MonoBehaviour
     private void OnTriggerEnter(Collider trigger)
     {
         Debug.Log(trigger);
-
-        if (trigger.name == "TrayTrigger")
+        if (isDropping)
         {
-            Debug.Log("in the tray");
-        } else if (trigger.name == "ArenaTrigger"){
-            Debug.Log("in the arena");
+            if (trigger.name == "TrayTrigger")
+            {
+                Debug.Log("in the tray");
 
+                isDropping = false;
+                Debug.Log("object dropping = " + isDropping);
+            }
+            else if (trigger.name == "ArenaTrigger")
+            {
+                Debug.Log("in the arena");
+
+                isDropping = false;
+                Debug.Log("object dropping = " + isDropping);
+            }
         }
+        
     }
 }
