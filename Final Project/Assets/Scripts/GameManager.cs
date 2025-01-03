@@ -109,4 +109,13 @@ public class GameManager : MonoBehaviour
     {
         return maxObjects;
     }
+
+    public void endGame(bool trayFull = false)
+    {
+        if (trayFull)
+        {
+            Debug.Log("Game over (from Manager)");
+
+        }
+    }
 }
