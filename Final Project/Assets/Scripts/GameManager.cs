@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     private List<GameObject> targetObjects;
     private int timer;
 
-    public int maxObjects = 2;
+    private int maxObjects = 2;
 
     private void Awake()
     {
@@ -73,5 +73,10 @@ public class GameManager : MonoBehaviour
                 Debug.Log(quadrant);
             }
         }
+    }
+
+    public int getMaxObjects()
+    {
+        return maxObjects;
     }
 }

@@ -5,12 +5,12 @@ using UnityEngine;
 public class TrayChecker : MonoBehaviour
 {
     //holder for maximum noumber of objects in the tray
-    private int maxObjects = 2;
+    private int maxObjects; // = 2;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        maxObjects = GameObject.Find("Manager").GetComponent<GameManager>().getMaxObjects();
     }
 
     // Update is called once per frame
