@@ -68,9 +68,39 @@ public class GameManager : MonoBehaviour
         {
             for (int j = 0; j < maxObjects; j++)
             {
-                int quadrant = Random.Range(0, 3);
+                int arenaSection = Random.Range(0, 3);
 
-                Debug.Log(quadrant);
+                //Debug.Log(arenaSection);
+
+                float randX = Random.Range(-2f, 2f);
+                float randZ = Random.Range(-2f, 2f);
+
+                if (arenaSection == 0) // far left corner
+                {
+                    randX = randX - 2;
+
+                    randZ = randZ + 2;
+                }
+                else if (arenaSection == 1) // near left corner
+                {
+                    randX = randX - 2;
+
+                    randZ = randZ - 2;
+                }
+                else if (arenaSection == 2) // near right corner
+                {
+                    randX = randX + 2;
+
+                    randZ = randZ - 2;
+                }
+
+
+                Vector3 randLoc = new Vector3(randX, 2, randZ);
+                //Debug.Log(randLoc);
+
+                Quaternion randRot = new Quaternion(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+
+                GameObject spawnObject = Instantiate(spawnObjects[i], randLoc, randRot, GameObject.Find("Objects").transform);
             }
         }
     }
