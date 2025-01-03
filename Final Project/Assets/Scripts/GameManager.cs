@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -13,6 +15,7 @@ public class GameManager : MonoBehaviour
     private List<GameObject> targetObjects;
     private int timer;
 
+    public int maxObjects = 2;
 
     private void Awake()
     {
@@ -36,6 +39,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         InitializeLevelData();
+
+        generateObjects();
     }
 
     // Update is called once per frame
@@ -55,5 +60,18 @@ public class GameManager : MonoBehaviour
         Debug.Log("Spawn = " + spawnObjects);
         Debug.Log("target = " + targetObjects);
    
+    }
+
+    private void generateObjects()
+    {
+        for (int i = 0; i < spawnObjects.Count; i++)
+        {
+            for (int j = 0; j < maxObjects; j++)
+            {
+                int quadrant = Random.Range(0, 3);
+
+                Debug.Log(quadrant);
+            }
+        }
     }
 }
