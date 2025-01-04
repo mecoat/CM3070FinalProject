@@ -38,7 +38,9 @@ public class TrayChecker : MonoBehaviour
             if (match == false )
             {
                 //end game - needs to be replaced to actually end the game
-                Debug.Log("Game over");
+                //Debug.Log("Game over");
+
+                GameObject.Find("Manager").GetComponent<GameManager>().endGame(true);
             } 
             else if (match == true)
             {
