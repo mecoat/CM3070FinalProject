@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
     Levels currentLevel;
     public int levelNo;
 
+    [SerializeField]
+    GameObject gameOver;
+
     private List<GameObject> spawnObjects;
     private List<GameObject> targetObjects;
     private int timer;
@@ -112,10 +115,23 @@ public class GameManager : MonoBehaviour
 
     public void endGame(bool trayFull = false)
     {
+        //when the function is called if the tray is full (with non-matching objects)...
         if (trayFull)
         {
-            Debug.Log("Game over (from Manager)");
+            //Debug.Log("Game over (from Manager)");
 
+            //get the scene canvas
+            Transform sceneCanv = GameObject.Find("sceneCanvas").transform;
+
+            string gameOverName = "Game Over";
+
+            //check if the canvas already contains the gameover object
+            if (! sceneCanv.Find(gameOverName)){
+                //if it doesn't, add the game over object
+                GameObject gameOverCanv = Instantiate(gameOver, sceneCanv);
+                //and change its name (to be sure it matches the above check)
+                gameOverCanv.name = gameOverName;
+            }
         }
     }
 }

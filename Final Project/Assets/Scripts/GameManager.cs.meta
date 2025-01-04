@@ -3,7 +3,11 @@ guid: d6ba70e350844a4429a6fa1ca60bde93
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - currentLevel: {instanceID: 0}
+  - sceneCanvas: {instanceID: 0}
+  - gameOver: {fileID: 5159207335667997494, guid: 13099238b98e8494997510aa34de6e7f,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
