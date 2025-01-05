@@ -7,10 +7,14 @@ public class TrayChecker : MonoBehaviour
     //holder for maximum noumber of objects in the tray
     private int maxObjects; // = 2;
 
+    private GameManager manager;
+
     // Start is called before the first frame update
     void Start()
     {
         maxObjects = GameObject.Find("Manager").GetComponent<GameManager>().getMaxObjects();
+
+        manager = GameObject.Find("Manager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -40,17 +44,18 @@ public class TrayChecker : MonoBehaviour
                 //end game - needs to be replaced to actually end the game
                 //Debug.Log("Game over");
 
-                GameObject.Find("Manager").GetComponent<GameManager>().endGame(true);
+                manager.endGame(true);
             } 
             else if (match == true)
             {
                 //Debug.Log("Successful match");
+                manager.checkMatch(this.transform.GetChild(0).gameObject.name);
 
                 //iterate through the matched objects
                 for (int i = 0; i < maxObjects; i++)
                 {
                     //log the match - needs to be replaced with working code to acually log this
-                    Debug.Log("logging : " + this.transform.GetChild(i).gameObject.name);
+                    //Debug.Log("logging : " + this.transform.GetChild(i).gameObject.name);
 
                     //remmove from scene
                     this.transform.GetChild(i).gameObject.GetComponent<CollectionObjects>().destroySelf();
