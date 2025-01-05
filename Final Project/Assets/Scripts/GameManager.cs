@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     GameObject gameOver;
+    [SerializeField]
+    GameObject nextLev;
 
     private List<GameObject> spawnObjects;
     private List<GameObject> targetObjects;
@@ -128,18 +130,32 @@ public class GameManager : MonoBehaviour
             string gameOverName = "Game Over";
 
             //check if the canvas already contains the gameover object
-            if (! sceneCanv.Find(gameOverName)){
+            if (!sceneCanv.Find(gameOverName))
+            {
                 //if it doesn't, add the game over object
                 GameObject gameOverCanv = Instantiate(gameOver, sceneCanv);
                 //and change its name (to be sure it matches the above check)
                 gameOverCanv.name = gameOverName;
             }
-        } 
+        }
         else if (targetsMet)
         {
-            Debug.Log("All targets met");
-        }
+            //Debug.Log("All targets met");
 
+            //get the scene canvas
+            Transform sceneCanv = GameObject.Find("sceneCanvas").transform;
+
+            string nextLevName = "Next Level";
+
+            //check if the canvas already contains the nextLev object
+            if (!sceneCanv.Find(nextLevName))
+            {
+                //if it doesn't, add the game over object
+                GameObject nextLevCanv = Instantiate(nextLev, sceneCanv);
+                //and change its name (to be sure it matches the above check)
+                nextLevCanv.name = nextLevName;
+            }
+        }
 
     }
 
