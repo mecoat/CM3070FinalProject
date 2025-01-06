@@ -24,13 +24,23 @@ public class Timer : MonoBehaviour
             remainingTime -= Time.deltaTime;
         }
 
-        Debug.Log(remainingTime);
+        //Debug.Log(remainingTime);
 
         int intMins = (int)(remainingTime / 60);
         string mins = intMins.ToString();
 
-        int intSecs = (int)(remainingTime % 60);
+        if (mins.Length < 2)
+        {
+            mins = "0" + mins;
+        }
+
+        int intSecs = (int)Mathf.Ceil(remainingTime % 60);
         string secs = intSecs.ToString();
+
+        if (secs.Length < 2)
+        {
+            secs = "0" + secs;
+        }
 
         string disp = "Time Remaining" + "\n" + mins  + ":" + secs;
 
