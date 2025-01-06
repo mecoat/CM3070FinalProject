@@ -1,19 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class Timer : MonoBehaviour
 {
 
-    float remainingTime = 10;
+    private float remainingTime = 10;
 
-    GameObject timerDisplay;
+    private Text timerDisplay;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        timerDisplay = GameObject.Find("Timer");
+        timerDisplay = GameObject.Find("Counter").GetComponent<Text>();
     }
 
     // Update is called once per frame
@@ -45,5 +47,7 @@ public class Timer : MonoBehaviour
         string disp = "Time Remaining" + "\n" + mins  + ":" + secs;
 
         Debug.Log(disp);
+
+        timerDisplay.text = disp;
     }
 }
