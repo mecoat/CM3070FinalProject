@@ -11,11 +11,16 @@ public class Timer : MonoBehaviour
 
     private Text timerDisplay;
 
+    private GameManager manager;
+
 
     // Start is called before the first frame update
     void Start()
     {
         timerDisplay = GameObject.Find("Counter").GetComponent<Text>();
+
+        manager = GameObject.Find("Manager").GetComponent<GameManager>();
+
     }
 
     // Update is called once per frame
@@ -24,30 +29,36 @@ public class Timer : MonoBehaviour
         if (remainingTime > 0)
         {
             remainingTime -= Time.deltaTime;
+
+            //Debug.Log(remainingTime);
+
+            int intMins = (int)(remainingTime / 60);
+            string mins = intMins.ToString();
+
+            if (mins.Length < 2)
+            {
+                mins = "0" + mins;
+            }
+
+            int intSecs = (int)Mathf.Ceil(remainingTime % 60);
+            string secs = intSecs.ToString();
+
+            if (secs.Length < 2)
+            {
+                secs = "0" + secs;
+            }
+
+            string disp = "Time Remaining" + "\n" + mins + ":" + secs;
+
+            //Debug.Log(disp);
+
+            timerDisplay.text = disp;
         }
-
-        //Debug.Log(remainingTime);
-
-        int intMins = (int)(remainingTime / 60);
-        string mins = intMins.ToString();
-
-        if (mins.Length < 2)
+        else
         {
-            mins = "0" + mins;
+            manager.endGame(true, false);
         }
 
-        int intSecs = (int)Mathf.Ceil(remainingTime % 60);
-        string secs = intSecs.ToString();
 
-        if (secs.Length < 2)
-        {
-            secs = "0" + secs;
-        }
-
-        string disp = "Time Remaining" + "\n" + mins  + ":" + secs;
-
-        Debug.Log(disp);
-
-        timerDisplay.text = disp;
     }
 }
