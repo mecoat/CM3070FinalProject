@@ -7,11 +7,13 @@ public class Timer : MonoBehaviour
 
     float remainingTime = 10;
 
+    GameObject timerDisplay;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        timerDisplay = GameObject.Find("Timer");
     }
 
     // Update is called once per frame
@@ -23,5 +25,15 @@ public class Timer : MonoBehaviour
         }
 
         Debug.Log(remainingTime);
+
+        int intMins = (int)(remainingTime / 60);
+        string mins = intMins.ToString();
+
+        int intSecs = (int)(remainingTime % 60);
+        string secs = intSecs.ToString();
+
+        string disp = "Time Remaining" + "\n" + mins  + ":" + secs;
+
+        Debug.Log(disp);
     }
 }
