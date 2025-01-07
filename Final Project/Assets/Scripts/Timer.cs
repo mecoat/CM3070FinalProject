@@ -21,6 +21,8 @@ public class Timer : MonoBehaviour
 
         manager = GameObject.Find("Manager").GetComponent<GameManager>();
 
+        //remainingTime = (float)manager.getTimer();
+        Debug.Log(remainingTime);
     }
 
     // Update is called once per frame
@@ -59,6 +61,10 @@ public class Timer : MonoBehaviour
             manager.endGame(true, false);
         }
 
+    }
 
+    public void setTimer(int timeVal)
+    {
+        remainingTime = (float)timeVal;
     }
 }
