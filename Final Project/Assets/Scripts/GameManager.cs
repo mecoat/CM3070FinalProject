@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
 
     private int maxObjects = 2;
 
+    private GameObject sceneCanvGO;
+
     private void Awake()
     {
         GetLevelData();
@@ -46,6 +48,10 @@ public class GameManager : MonoBehaviour
         InitializeLevelData();
 
         generateObjects();
+
+        sceneCanvGO = GameObject.Find("sceneCanvas");
+
+        GameObject.Find("Timer").GetComponent<Timer>().setTimer(timer);
     }
 
     // Update is called once per frame
@@ -125,7 +131,7 @@ public class GameManager : MonoBehaviour
             //Debug.Log("Game over (from Manager)");
 
             //get the scene canvas
-            Transform sceneCanv = GameObject.Find("sceneCanvas").transform;
+            Transform sceneCanv = sceneCanvGO.transform;
 
             string gameOverName = "Game Over";
 
@@ -143,7 +149,7 @@ public class GameManager : MonoBehaviour
             //Debug.Log("All targets met");
 
             //get the scene canvas
-            Transform sceneCanv = GameObject.Find("sceneCanvas").transform;
+            Transform sceneCanv = sceneCanvGO.transform;
 
             string nextLevName = "Next Level";
 
@@ -176,4 +182,11 @@ public class GameManager : MonoBehaviour
             endGame(false, true);
         }
     }
+
+    //public int setTimerDisp()
+    //{//
+      //  Debug.Log("getTimer : " + timer);
+
+        //return timer;
+    //}
 }

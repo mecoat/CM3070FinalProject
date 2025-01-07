@@ -44,7 +44,7 @@ public class TrayChecker : MonoBehaviour
                 //end game - needs to be replaced to actually end the game
                 //Debug.Log("Game over");
 
-                manager.endGame(true);
+                manager.endGame(true, false);
             } 
             else if (match == true)
             {
