@@ -73,9 +73,9 @@ public class GameManager : MonoBehaviour
         targetObjects = currentLevel.targetObjects;
         timer = currentLevel.timer;
 
-        Debug.Log("timer = " + timer);
-        Debug.Log("Spawn = " + spawnObjects);
-        Debug.Log("target = " + targetObjects);
+        //Debug.Log("timer = " + timer);
+        //Debug.Log("Spawn = " + spawnObjects);
+        //Debug.Log("target = " + targetObjects);
    
     }
 
