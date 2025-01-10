@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     private List<GameObject> spawnObjects;
     private List<GameObject> targetObjects;
     private int timer;
+    private Dictionary<string, int> targetDict = new Dictionary<string, int>();
 
     private int maxObjects = 2;
 
@@ -52,6 +53,11 @@ public class GameManager : MonoBehaviour
         sceneCanvGO = GameObject.Find("sceneCanvas");
 
         GameObject.Find("Timer").GetComponent<Timer>().setTimer(timer);
+
+        createTargetDict();
+
+        GameObject.Find("Targets").GetComponent<TargetDisp>().setTargets(targetDict);
+
     }
 
     // Update is called once per frame
@@ -189,4 +195,22 @@ public class GameManager : MonoBehaviour
 
         //return timer;
     //}
+
+    private void createTargetDict()
+    {
+        for (int i = 0; i < targetObjects.Count; i++)
+        {
+            string targetName = targetObjects[i].name;
+            //Debug.Log(targetName);
+
+            if (targetDict.ContainsKey(targetName))
+            {
+                targetDict[targetName] = targetDict[targetName] + 1;
+            } 
+            else
+            {
+                targetDict.Add(targetName, 1);
+            }
+        }
+    }
 }
