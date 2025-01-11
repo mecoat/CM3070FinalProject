@@ -69,12 +69,11 @@ public class TargetDisp : MonoBehaviour
 
             targetDisps[i].transform.GetChild(1).gameObject.GetComponent<Text>().text = targets[targetDictKeys[i]].ToString();
 
-            Sprite targSprite = Sprite.Create(Resources.Load<Texture2D>("TargetImages/" + targetDictKeys[i] + ".png"),
-                                                                                                            new Rect(0f, 0f, 30f, 30f), new Vector2(0.5f, 0.5f), 0f);
-            Debug.Log(targSprite);
+            Sprite targSprite = Sprite.Create(Resources.Load<Texture2D>("TargetImages/" + targetDictKeys[i]),
+                                                                                                            new Rect(0f, 0f, 300f, 300f), new Vector2(0.5f, 0.5f), 100f);
+            //Debug.Log(targSprite);
 
-            targetDisps[i].transform.GetChild(0).gameObject.GetComponent<Image>().sprite = Sprite.Create( Resources.Load<Texture2D>("TargetImages/" + targetDictKeys[i] + ".png"), 
-                                                                                                            new Rect (0f, 0f, 30f, 30f), new Vector2(0.5f, 0.5f), 0f);
+            targetDisps[i].transform.GetChild(0).gameObject.GetComponent<Image>().sprite = targSprite;
 
         }
     }
