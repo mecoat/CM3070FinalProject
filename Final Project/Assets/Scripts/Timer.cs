@@ -13,6 +13,8 @@ public class Timer : MonoBehaviour
 
     private GameManager manager;
 
+    private bool timerRun = true;
+
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +30,7 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (remainingTime > 0)
+        if (remainingTime > 0 && timerRun)
         {
             remainingTime -= Time.deltaTime;
 
@@ -56,7 +58,7 @@ public class Timer : MonoBehaviour
 
             timerDisplay.text = disp;
         }
-        else
+        else if (remainingTime <= 0)
         {
             manager.endGame(true, false);
         }
@@ -66,5 +68,10 @@ public class Timer : MonoBehaviour
     public void setTimer(int timeVal)
     {
         remainingTime = (float)timeVal;
+    }
+
+    public void stopTimer()
+    {
+        timerRun = false;
     }
 }
