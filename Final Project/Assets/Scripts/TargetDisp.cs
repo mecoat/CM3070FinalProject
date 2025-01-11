@@ -65,16 +65,31 @@ public class TargetDisp : MonoBehaviour
         {
             //make the display appear
             targetDisps[i].SetActive(true);
-            Debug.Log(targetDisps[i].name);
-
-            targetDisps[i].transform.GetChild(1).gameObject.GetComponent<Text>().text = targets[targetDictKeys[i]].ToString();
+            //Debug.Log(targetDisps[i].name);
 
             Sprite targSprite = Sprite.Create(Resources.Load<Texture2D>("TargetImages/" + targetDictKeys[i]),
                                                                                                             new Rect(0f, 0f, 300f, 300f), new Vector2(0.5f, 0.5f), 100f);
             //Debug.Log(targSprite);
 
             targetDisps[i].transform.GetChild(0).gameObject.GetComponent<Image>().sprite = targSprite;
+        }
 
+        updateNumDisp();
+
+    }
+
+    public void updateDict(string valToChange)
+    {
+        targets[valToChange] -= 1;
+
+        updateNumDisp();
+    }
+
+    private void updateNumDisp()
+    {
+        for (int i = 0; i < targets.Count; i++)
+        {
+            targetDisps[i].transform.GetChild(1).gameObject.GetComponent<Text>().text = targets[targetDictKeys[i]].ToString();
         }
     }
 }

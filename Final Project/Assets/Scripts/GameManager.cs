@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     private int maxObjects = 2;
 
     private GameObject sceneCanvGO;
+    private GameObject targetsDisp;
 
     private void Awake()
     {
@@ -56,7 +57,9 @@ public class GameManager : MonoBehaviour
 
         createTargetDict();
 
-        GameObject.Find("Targets").GetComponent<TargetDisp>().setTargets(targetDict);
+        targetsDisp = GameObject.Find("Targets");
+
+        targetsDisp.GetComponent<TargetDisp>().setTargets(targetDict);
 
     }
 
@@ -178,6 +181,8 @@ public class GameManager : MonoBehaviour
             if (matchName == targetObjects[i].name)
             {
                 targetObjects.RemoveAt(i);
+
+                targetsDisp.GetComponent<TargetDisp>().updateDict(matchName);
                 break;
             }
 
