@@ -153,6 +153,7 @@ public class GameManager : MonoBehaviour
                 gameOverCanv.name = gameOverName;
             }
         }
+        //win level
         else if (targetsMet)
         {
             //Debug.Log("All targets met");
@@ -170,7 +171,12 @@ public class GameManager : MonoBehaviour
                 //and change its name (to be sure it matches the above check)
                 nextLevCanv.name = nextLevName;
             }
+
+            
         }
+
+        //stop the timer
+        GameObject.Find("Timer").GetComponent<Timer>().stopTimer();
 
     }
 
