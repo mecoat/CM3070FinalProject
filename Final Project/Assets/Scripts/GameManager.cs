@@ -19,10 +19,12 @@ public class GameManager : MonoBehaviour
     private List<GameObject> spawnObjects;
     private List<GameObject> targetObjects;
     private int timer;
+    private Dictionary<string, int> targetDict = new Dictionary<string, int>();
 
     private int maxObjects = 2;
 
     private GameObject sceneCanvGO;
+    private GameObject targetsDisp;
 
     private void Awake()
     {
@@ -52,6 +54,13 @@ public class GameManager : MonoBehaviour
         sceneCanvGO = GameObject.Find("sceneCanvas");
 
         GameObject.Find("Timer").GetComponent<Timer>().setTimer(timer);
+
+        createTargetDict();
+
+        targetsDisp = GameObject.Find("Targets");
+
+        targetsDisp.GetComponent<TargetDisp>().setTargets(targetDict);
+
     }
 
     // Update is called once per frame
@@ -67,9 +76,9 @@ public class GameManager : MonoBehaviour
         targetObjects = currentLevel.targetObjects;
         timer = currentLevel.timer;
 
-        Debug.Log("timer = " + timer);
-        Debug.Log("Spawn = " + spawnObjects);
-        Debug.Log("target = " + targetObjects);
+        //Debug.Log("timer = " + timer);
+        //Debug.Log("Spawn = " + spawnObjects);
+        //Debug.Log("target = " + targetObjects);
    
     }
 
@@ -172,6 +181,8 @@ public class GameManager : MonoBehaviour
             if (matchName == targetObjects[i].name)
             {
                 targetObjects.RemoveAt(i);
+
+                targetsDisp.GetComponent<TargetDisp>().updateDict(matchName);
                 break;
             }
 
@@ -189,4 +200,22 @@ public class GameManager : MonoBehaviour
 
         //return timer;
     //}
+
+    private void createTargetDict()
+    {
+        for (int i = 0; i < targetObjects.Count; i++)
+        {
+            string targetName = targetObjects[i].name;
+            //Debug.Log(targetName);
+
+            if (targetDict.ContainsKey(targetName))
+            {
+                targetDict[targetName] = targetDict[targetName] + 1;
+            } 
+            else
+            {
+                targetDict.Add(targetName, 1);
+            }
+        }
+    }
 }
