@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class TargetDisp : MonoBehaviour
 {
@@ -12,6 +14,7 @@ public class TargetDisp : MonoBehaviour
     //private GameObject target2;
     //private GameObject target3;
     //private GameObject target4;
+    private List <string> targetDictKeys;
 
 
     // Start is called before the first frame update
@@ -31,12 +34,12 @@ public class TargetDisp : MonoBehaviour
         //target3 = targetHolder.transform.GetChild(4).gameObject;
         //target4 = targetHolder.transform.GetChild(5).gameObject;
 
-        for (int i = 0; i < targets.Count; i++)
-        {
+        //for (int i = 0; i < targets.Count; i++)
+        //{
             //make the display appear
-            targetDisps[i].SetActive(true);
-            Debug.Log(targetDisps[i].name);
-        }
+          //  targetDisps[i].SetActive(true);
+           // Debug.Log(targetDisps[i].name);
+        //}
 
     }
 
@@ -51,6 +54,8 @@ public class TargetDisp : MonoBehaviour
         targets = inpTargets;
         Debug.Log(targets);
 
+        targetDictKeys = new List<string>(targets.Keys);
+
         setupDisplay();
     }
 
@@ -61,6 +66,9 @@ public class TargetDisp : MonoBehaviour
             //make the display appear
             targetDisps[i].SetActive(true);
             Debug.Log(targetDisps[i].name);
+
+            targetDisps[i].transform.GetChild(1).gameObject.GetComponent<Text>().text = targets[targetDictKeys[i]].ToString();
+
         }
     }
 }
