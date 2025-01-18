@@ -38,7 +38,9 @@ public class GameManager : MonoBehaviour
 
     private void GetLevelData()
     {
-        int levelNum = 1;
+        //int levelNum = 1;
+        int levelNum = MainManager.Instance.getLevel();
+
         string levelName = "Level" + levelNum + "Data";
   
         //https://docs.unity3d.com/2020.1/Documentation/ScriptReference/Resources.Load.html accessed 3/1/25
@@ -164,6 +166,9 @@ public class GameManager : MonoBehaviour
             //}
             gameOver.SetActive(true);
 
+            //reset level to 1
+            MainManager.Instance.resetLevel();
+
         }
         //win level
         else if (targetsMet)
@@ -185,6 +190,8 @@ public class GameManager : MonoBehaviour
             //}
             nextLev.SetActive(true);
 
+            //update level to nect level
+            MainManager.Instance.moveLevel();
         }
 
         //stop the timer
@@ -237,9 +244,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void ReturnToStart()
+    public void returnToStart()
     {
         //load the start scene
         SceneManager.LoadScene("StartScene");
+    }
+
+    public void reloadScene()
+    {
+        //load the start scene
+        SceneManager.LoadScene("GameScene");
     }
 }
