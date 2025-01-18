@@ -12,10 +12,10 @@ public class GameManager : MonoBehaviour
     Levels currentLevel;
     public int levelNo;
 
-    [SerializeField]
-    GameObject gameOver;
-    [SerializeField]
-    GameObject nextLev;
+    //[SerializeField]
+    //GameObject gameOver;
+    //[SerializeField]
+    //GameObject nextLev;
 
     private List<GameObject> spawnObjects;
     private List<GameObject> targetObjects;
@@ -26,6 +26,9 @@ public class GameManager : MonoBehaviour
 
     private GameObject sceneCanvGO;
     private GameObject targetsDisp;
+    private GameObject gameOver;
+    private GameObject nextLev;
+
 
     private void Awake()
     {
@@ -58,9 +61,15 @@ public class GameManager : MonoBehaviour
 
         createTargetDict();
 
-        targetsDisp = GameObject.Find("Targets");
+        targetsDisp = sceneCanvGO.transform.Find("Targets").gameObject;
 
         targetsDisp.GetComponent<TargetDisp>().setTargets(targetDict);
+
+        gameOver = sceneCanvGO.transform.Find("GameOver").gameObject;
+
+
+        nextLev = sceneCanvGO.transform.Find("NextLevel").gameObject;
+
 
     }
 
@@ -143,16 +152,18 @@ public class GameManager : MonoBehaviour
             //get the scene canvas
             Transform sceneCanv = sceneCanvGO.transform;
 
-            string gameOverName = "Game Over";
+            //string gameOverName = "Game Over";
 
             //check if the canvas already contains the gameover object
-            if (!sceneCanv.Find(gameOverName))
-            {
-                //if it doesn't, add the game over object
-                GameObject gameOverCanv = Instantiate(gameOver, sceneCanv);
-                //and change its name (to be sure it matches the above check)
-                gameOverCanv.name = gameOverName;
-            }
+            //if (!sceneCanv.Find(gameOverName))
+            //{
+            //if it doesn't, add the game over object
+            //  GameObject gameOverCanv = Instantiate(gameOver, sceneCanv);
+            //and change its name (to be sure it matches the above check)
+            //gameOverCanv.name = gameOverName;
+            //}
+            gameOver.SetActive(true);
+
         }
         //win level
         else if (targetsMet)
@@ -162,18 +173,18 @@ public class GameManager : MonoBehaviour
             //get the scene canvas
             Transform sceneCanv = sceneCanvGO.transform;
 
-            string nextLevName = "Next Level";
+            //string nextLevName = "Next Level";
 
             //check if the canvas already contains the nextLev object
-            if (!sceneCanv.Find(nextLevName))
-            {
+            //if (!sceneCanv.Find(nextLevName))
+            //{
                 //if it doesn't, add the game over object
-                GameObject nextLevCanv = Instantiate(nextLev, sceneCanv);
+              //  GameObject nextLevCanv = Instantiate(nextLev, sceneCanv);
                 //and change its name (to be sure it matches the above check)
-                nextLevCanv.name = nextLevName;
-            }
+                //nextLevCanv.name = nextLevName;
+            //}
+            nextLev.SetActive(true);
 
-            
         }
 
         //stop the timer
@@ -224,5 +235,11 @@ public class GameManager : MonoBehaviour
                 targetDict.Add(targetName, 1);
             }
         }
+    }
+
+    public void ReturnToStart()
+    {
+        //load the start scene
+        SceneManager.LoadScene("StartScene");
     }
 }
