@@ -38,6 +38,13 @@ public class CollectorControl : MonoBehaviour
 
     private void FixedUpdate()
     {
+
+        if (rb.transform.rotation.eulerAngles.x != 0 || rb.transform.rotation.eulerAngles.y != 0 | rb.transform.rotation.eulerAngles.z != 0)
+        {
+            Debug.Log("resetting rotation");
+            rb.transform.rotation = new Quaternion(0f, 0f, 0f, 0f); //resets rotation
+
+        }
         
         //if the playerMove variable is true (player control is on)
         if (playerMove)
@@ -51,6 +58,7 @@ public class CollectorControl : MonoBehaviour
 
             //move the controller rigidbody according to the calculated vector
             rb.MovePosition(transform.position + newPos);
+
         }
 
         //if the player presses Fire2 button (Left Alt)
@@ -68,8 +76,12 @@ public class CollectorControl : MonoBehaviour
             //otherwise if there is an object...
             else
             {
+                //rb.Sleep();
+
                 //drop the object
                 dropObject();
+
+                //rb.WakeUp();
             }
 
         }
@@ -182,7 +194,10 @@ public class CollectorControl : MonoBehaviour
         //rb.position = new Vector3(rb.transform.position.x, 9, rb.transform.position.z);
         rb.position = new Vector3(rb.transform.position.x, 5f, rb.transform.position.z);
 
+        //Debug.Log("droppping object");
+
         resetConstraints();
+
     }
 
     //function to reset constraints after being affectedd externally
@@ -198,6 +213,9 @@ public class CollectorControl : MonoBehaviour
         //prevent the Rigid body from moving more in y direction (hold the collector at the correct height (and prevent gravity from dropping it))
         rb.constraints = RigidbodyConstraints.FreezePositionY;
         rb.transform.rotation = new Quaternion(0f, 0f, 0f, 0f); //resets rotation
+
+        //Debug.Log("resetting constrainsts");
+        
     }
 }
 
