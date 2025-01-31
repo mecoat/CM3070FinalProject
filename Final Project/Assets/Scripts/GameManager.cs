@@ -17,8 +17,8 @@ public class GameManager : MonoBehaviour
     //[SerializeField]
     //GameObject nextLev;
 
-    private List<GameObject> spawnObjects;
-    private List<GameObject> targetObjects;
+    private List<GameObject> spawnObjects = new List<GameObject>();
+    private List<GameObject> targetObjects = new List<GameObject>();
     private int timer;
     private Dictionary<string, int> targetDict = new Dictionary<string, int>();
 

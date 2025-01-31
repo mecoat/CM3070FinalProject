@@ -30,7 +30,7 @@ public class MainManager : MonoBehaviour
 
     public void resetLevel()
     {
-        currLevel = 1; ;
+        currLevel = 1;
     }
 
     public void moveLevel()
