@@ -8,7 +8,7 @@ MonoImporter:
   - sceneCanvas: {instanceID: 0}
   - gameOver: {fileID: 5159207335667997494, guid: 13099238b98e8494997510aa34de6e7f,
       type: 3}
-  executionOrder: 0
+  executionOrder: 100
   icon: {instanceID: 0}
   userData: 
   assetBundleName: 
