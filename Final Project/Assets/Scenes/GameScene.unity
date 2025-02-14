@@ -860,6 +860,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 775b11964638b9544b055a7dc71de158, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreDisplay: {fileID: 5846340466942648186}
+  manager: {fileID: 1966163208}
 --- !u!114 &3229875950933762775
 MonoBehaviour:
   m_ObjectHideFlags: 0
