@@ -12,8 +12,8 @@ public class Scorer : MonoBehaviour
     [SerializeField]
     Text scoreDisplay;
 
-    [SerializeField]
-    GameManager manager;
+    //[SerializeField]
+    //GameManager manager;
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +24,7 @@ public class Scorer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        updateScpre(1);
+        //updateScpre(1);
     }
 
 

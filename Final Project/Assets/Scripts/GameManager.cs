@@ -12,6 +12,9 @@ public class GameManager : MonoBehaviour
     Levels currentLevel;
     public int levelNo;
 
+    [SerializeField]
+    GameObject Scorer;
+
     //[SerializeField]
     //GameObject gameOver;
     //[SerializeField]
@@ -201,6 +204,9 @@ public class GameManager : MonoBehaviour
 
     public void checkMatch(string matchName)
     {
+        //add 20 for a match
+        Scorer.GetComponent<Scorer>().updateScpre(20);
+
         for (int i = 0; i < targetObjects.Count; i++)
         {
             if (matchName == targetObjects[i].name)
@@ -208,6 +214,10 @@ public class GameManager : MonoBehaviour
                 targetObjects.RemoveAt(i);
 
                 targetsDisp.GetComponent<TargetDisp>().updateDict(matchName);
+
+                //add additional 30 for a target match
+                Scorer.GetComponent<Scorer>().updateScpre(30);
+
                 break;
             }
 
