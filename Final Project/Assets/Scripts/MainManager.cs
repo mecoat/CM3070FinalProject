@@ -45,6 +45,11 @@ public class MainManager : MonoBehaviour
         return playerScore;
     }
 
+    public void resetScore()
+    {
+        playerScore = 0;
+    }
+
     public void updateScore(int newVal)
     {
         playerScore = playerScore + newVal;

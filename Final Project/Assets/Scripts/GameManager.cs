@@ -86,7 +86,7 @@ public class GameManager : MonoBehaviour
 
         //nextLev = sceneCanvGO.transform.Find("NextLevel").gameObject;
 
-
+        Scorer.GetComponent<Scorer>().updateScpre(MainManager.Instance.getScore());
     }
 
     // Update is called once per frame
@@ -184,6 +184,9 @@ public class GameManager : MonoBehaviour
             //reset level to 1
             MainManager.Instance.resetLevel();
 
+            //reset player score in Main Manager
+            MainManager.Instance.resetScore();
+
         }
         //win level
         else if (targetsMet)
@@ -201,6 +204,7 @@ public class GameManager : MonoBehaviour
             //if it doesn't, add the game over object
             //  GameObject nextLevCanv = Instantiate(nextLev, sceneCanv);
             //and change its name (to be sure it matches the above check)
+            //and changedeb its name (to be sure it matches the above check)
             //nextLevCanv.name = nextLevName;
             //}
 
@@ -219,6 +223,8 @@ public class GameManager : MonoBehaviour
         //stop the timer
         //GameObject.Find("Timer").GetComponent<Timer>().stopTimer();
         Timer.GetComponent<Timer>().stopTimer();
+
+        
 
     }
 
