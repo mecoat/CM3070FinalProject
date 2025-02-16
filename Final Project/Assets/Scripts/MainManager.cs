@@ -9,6 +9,8 @@ public class MainManager : MonoBehaviour
 
     private int currLevel = 1;
 
+    private int playerScore = 0;
+
     public static MainManager Instance;
 
     private void Awake()
@@ -36,5 +38,17 @@ public class MainManager : MonoBehaviour
     public void moveLevel()
     {
         currLevel += 1;
+    }
+
+    public int getScore()
+    {
+        return playerScore;
+    }
+
+    public void updateScore(int newVal)
+    {
+        playerScore = playerScore + newVal;
+
+        Debug.Log("player score = " + playerScore);
     }
 }

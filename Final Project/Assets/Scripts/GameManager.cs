@@ -204,6 +204,9 @@ public class GameManager : MonoBehaviour
 
             //update level to nect level
             MainManager.Instance.moveLevel();
+
+            //update total player score
+            MainManager.Instance.updateScore(Scorer.GetComponent<Scorer>().getScore());
         }
 
         //stop the timer

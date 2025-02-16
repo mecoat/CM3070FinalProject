@@ -37,4 +37,9 @@ public class Scorer : MonoBehaviour
         scoreDisplay.text = disp;
 
     }
+
+    public int getScore()
+    {
+        return (currScore);
+    }
 }
