@@ -18,11 +18,14 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     GameObject Timer;
 
+    [SerializeField]
+    GameObject targetsDisp;
 
-    //[SerializeField]
-    //GameObject gameOver;
-    //[SerializeField]
-    //GameObject nextLev;
+
+    [SerializeField]
+    GameObject gameOver;
+    [SerializeField]
+    GameObject nextLev;
 
     private List<GameObject> spawnObjects = new List<GameObject>();
     private List<GameObject> targetObjects = new List<GameObject>();
@@ -31,10 +34,13 @@ public class GameManager : MonoBehaviour
 
     private int maxObjects = 2;
 
-    private GameObject sceneCanvGO;
-    private GameObject targetsDisp;
-    private GameObject gameOver;
-    private GameObject nextLev;
+    //private GameObject sceneCanvGO;
+    //private GameObject targetsDisp;
+    //private GameObject gameOver;
+    //private GameObject nextLev;
+
+    [SerializeField]
+    GameObject Objects;
 
 
     private void Awake()
@@ -64,21 +70,21 @@ public class GameManager : MonoBehaviour
 
         generateObjects();
 
-        sceneCanvGO = GameObject.Find("sceneCanvas");
+        //sceneCanvGO = GameObject.Find("sceneCanvas");
 
         //GameObject.Find("Timer").GetComponent<Timer>().setTimer(timer);
         Timer.GetComponent<Timer>().setTimer(timer);
 
         createTargetDict();
 
-        targetsDisp = sceneCanvGO.transform.Find("Targets").gameObject;
+        //targetsDisp = sceneCanvGO.transform.Find("Targets").gameObject;
 
         targetsDisp.GetComponent<TargetDisp>().setTargets(targetDict);
 
-        gameOver = sceneCanvGO.transform.Find("GameOver").gameObject;
+        //gameOver = sceneCanvGO.transform.Find("GameOver").gameObject;
 
 
-        nextLev = sceneCanvGO.transform.Find("NextLevel").gameObject;
+        //nextLev = sceneCanvGO.transform.Find("NextLevel").gameObject;
 
 
     }
@@ -140,7 +146,8 @@ public class GameManager : MonoBehaviour
 
                 Quaternion randRot = new Quaternion(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f));
 
-                GameObject spawnObject = Instantiate(spawnObjects[i], randLoc, randRot, GameObject.Find("Objects").transform);
+                //GameObject spawnObject = Instantiate(spawnObjects[i], randLoc, randRot, GameObject.Find("Objects").transform);
+                GameObject spawnObject = Instantiate(spawnObjects[i], randLoc, randRot, Objects.transform);
                 //and change its name (to be sure it matches the above check)
                 spawnObject.name = spawnObjects[i].name;
             }
@@ -160,7 +167,7 @@ public class GameManager : MonoBehaviour
             //Debug.Log("Game over (from Manager)");
 
             //get the scene canvas
-            Transform sceneCanv = sceneCanvGO.transform;
+            //Transform sceneCanv = sceneCanvGO.transform;
 
             //string gameOverName = "Game Over";
 
@@ -184,7 +191,7 @@ public class GameManager : MonoBehaviour
             //Debug.Log("All targets met");
 
             //get the scene canvas
-            Transform sceneCanv = sceneCanvGO.transform;
+            //Transform sceneCanv = sceneCanvGO.transform;
 
             //string nextLevName = "Next Level";
 
