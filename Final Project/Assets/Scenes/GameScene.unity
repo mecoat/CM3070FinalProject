@@ -649,6 +649,7 @@ MonoBehaviour:
   currentLevel: {fileID: 11400000, guid: 89d1e83c83d50794bb9ed21d4b2381a4, type: 2}
   levelNo: 0
   Scorer: {fileID: 2610869807920960354}
+  Timer: {fileID: 6749477323055570316}
 --- !u!4 &1966163209
 Transform:
   m_ObjectHideFlags: 0
@@ -1211,6 +1212,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7de058f4e7b75a4ca13e4843da06e50, type: 3}
+--- !u!1 &6749477323055570316 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1584344790930904152, guid: a7de058f4e7b75a4ca13e4843da06e50,
+    type: 3}
+  m_PrefabInstance: {fileID: 6749477323055570315}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7023361390593266095
 PrefabInstance:
   m_ObjectHideFlags: 0

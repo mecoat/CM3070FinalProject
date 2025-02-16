@@ -15,6 +15,10 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     GameObject Scorer;
 
+    [SerializeField]
+    GameObject Timer;
+
+
     //[SerializeField]
     //GameObject gameOver;
     //[SerializeField]
@@ -62,7 +66,8 @@ public class GameManager : MonoBehaviour
 
         sceneCanvGO = GameObject.Find("sceneCanvas");
 
-        GameObject.Find("Timer").GetComponent<Timer>().setTimer(timer);
+        //GameObject.Find("Timer").GetComponent<Timer>().setTimer(timer);
+        Timer.GetComponent<Timer>().setTimer(timer);
 
         createTargetDict();
 
@@ -186,11 +191,15 @@ public class GameManager : MonoBehaviour
             //check if the canvas already contains the nextLev object
             //if (!sceneCanv.Find(nextLevName))
             //{
-                //if it doesn't, add the game over object
-              //  GameObject nextLevCanv = Instantiate(nextLev, sceneCanv);
-                //and change its name (to be sure it matches the above check)
-                //nextLevCanv.name = nextLevName;
+            //if it doesn't, add the game over object
+            //  GameObject nextLevCanv = Instantiate(nextLev, sceneCanv);
+            //and change its name (to be sure it matches the above check)
+            //nextLevCanv.name = nextLevName;
             //}
+
+            int leftoverTime = Timer.GetComponent<Timer>().getTimer();
+            Scorer.GetComponent<Scorer>().updateScpre(leftoverTime);
+
             nextLev.SetActive(true);
 
             //update level to nect level
@@ -198,7 +207,8 @@ public class GameManager : MonoBehaviour
         }
 
         //stop the timer
-        GameObject.Find("Timer").GetComponent<Timer>().stopTimer();
+        //GameObject.Find("Timer").GetComponent<Timer>().stopTimer();
+        Timer.GetComponent<Timer>().stopTimer();
 
     }
 
