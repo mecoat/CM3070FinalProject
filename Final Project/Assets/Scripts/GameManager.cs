@@ -195,6 +195,10 @@ public class GameManager : MonoBehaviour
 
             gameOverScore.GetComponent<Text>().text = "Your Score : " + playerScore;
 
+            //Debug.Log("trayfull called");
+
+            MainManager.Instance.addToHighScore("MCC", playerScore);
+
             //reset level to 1
             MainManager.Instance.resetLevel();
 

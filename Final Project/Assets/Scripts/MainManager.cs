@@ -11,6 +11,8 @@ public class MainManager : MonoBehaviour
 
     private int playerScore = 0;
 
+    private List<(string initials, int score)> highScoreBoard = new List<(string, int)>();
+
     public static MainManager Instance;
 
     private void Awake()
@@ -56,5 +58,51 @@ public class MainManager : MonoBehaviour
         //playerScore = playerScore + newVal;
 
         //Debug.Log("player score = " + playerScore);
+    }
+
+    public void addToHighScore(string submitInitials, int submitScore)
+    {
+        if (highScoreBoard.Count == 0)
+        {
+            highScoreBoard.Add((submitInitials, submitScore));
+        } 
+        else
+        {
+            for (var i = highScoreBoard.Count-1; i >= 0; i--)
+            {
+                if (submitScore == highScoreBoard[i].score || submitScore < highScoreBoard[i].score)
+                {
+                    Debug.Log("need to add score)");
+                    if (i == highScoreBoard.Count - 1)
+                    {
+                        //Debug.Log("adding");
+                        highScoreBoard.Add((submitInitials, submitScore));
+                    } 
+                    else
+                    {
+                        //Debug.Log("inserting");
+                        highScoreBoard.Insert(i + 1, (submitInitials, submitScore));
+                    }
+
+                    if (highScoreBoard.Count > 10)
+                    {
+                        highScoreBoard.RemoveAt(highScoreBoard.Count - 1);
+                    }
+
+                    break;
+                }
+                else if (i == 0 && submitScore > highScoreBoard[i].score)
+                {
+                    highScoreBoard.Insert(i, (submitInitials, submitScore));
+                    break;
+                }
+            }
+
+        }
+
+        for (var i = 0; i < highScoreBoard.Count; i++)
+        {
+            Debug.Log(highScoreBoard[i]);
+        }
     }
 }
