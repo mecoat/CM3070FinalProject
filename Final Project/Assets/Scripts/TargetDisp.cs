@@ -22,7 +22,7 @@ public class TargetDisp : MonoBehaviour
     {
         targetHolder = GameObject.Find("Targets");
 
-        Debug.Log("hoder1" + targetHolder.transform.GetChild(2).gameObject.name);
+        //Debug.Log("hoder1" + targetHolder.transform.GetChild(2).gameObject.name);
         
         targetDisps.Add(targetHolder.transform.GetChild(2).gameObject);
         targetDisps.Add(targetHolder.transform.GetChild(3).gameObject);
@@ -52,7 +52,7 @@ public class TargetDisp : MonoBehaviour
     public void setTargets(Dictionary<string, int> inpTargets)
     {
         targets = inpTargets;
-        Debug.Log(targets);
+        //Debug.Log(targets);
 
         targetDictKeys = new List<string>(targets.Keys);
 

@@ -74,4 +74,9 @@ public class Timer : MonoBehaviour
     {
         timerRun = false;
     }
+
+    public int getTimer()
+    {
+        return ((int)Mathf.Ceil(remainingTime));
+    }
 }

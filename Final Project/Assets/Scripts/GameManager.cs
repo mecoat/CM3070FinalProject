@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 
 
 public class GameManager : MonoBehaviour
@@ -12,10 +14,25 @@ public class GameManager : MonoBehaviour
     Levels currentLevel;
     public int levelNo;
 
-    //[SerializeField]
-    //GameObject gameOver;
-    //[SerializeField]
-    //GameObject nextLev;
+    [SerializeField]
+    GameObject Scorer;
+
+    [SerializeField]
+    GameObject Timer;
+
+    [SerializeField]
+    GameObject targetsDisp;
+
+
+    [SerializeField]
+    GameObject gameOver;
+    [SerializeField]
+    GameObject nextLev;
+
+    [SerializeField]
+    GameObject gameOverScore;
+    [SerializeField]
+    GameObject nextLevScore;
 
     private List<GameObject> spawnObjects = new List<GameObject>();
     private List<GameObject> targetObjects = new List<GameObject>();
@@ -24,10 +41,13 @@ public class GameManager : MonoBehaviour
 
     private int maxObjects = 2;
 
-    private GameObject sceneCanvGO;
-    private GameObject targetsDisp;
-    private GameObject gameOver;
-    private GameObject nextLev;
+    //private GameObject sceneCanvGO;
+    //private GameObject targetsDisp;
+    //private GameObject gameOver;
+    //private GameObject nextLev;
+
+    [SerializeField]
+    GameObject Objects;
 
 
     private void Awake()
@@ -57,22 +77,23 @@ public class GameManager : MonoBehaviour
 
         generateObjects();
 
-        sceneCanvGO = GameObject.Find("sceneCanvas");
+        //sceneCanvGO = GameObject.Find("sceneCanvas");
 
-        GameObject.Find("Timer").GetComponent<Timer>().setTimer(timer);
+        //GameObject.Find("Timer").GetComponent<Timer>().setTimer(timer);
+        Timer.GetComponent<Timer>().setTimer(timer);
 
         createTargetDict();
 
-        targetsDisp = sceneCanvGO.transform.Find("Targets").gameObject;
+        //targetsDisp = sceneCanvGO.transform.Find("Targets").gameObject;
 
         targetsDisp.GetComponent<TargetDisp>().setTargets(targetDict);
 
-        gameOver = sceneCanvGO.transform.Find("GameOver").gameObject;
+        //gameOver = sceneCanvGO.transform.Find("GameOver").gameObject;
 
 
-        nextLev = sceneCanvGO.transform.Find("NextLevel").gameObject;
+        //nextLev = sceneCanvGO.transform.Find("NextLevel").gameObject;
 
-
+        Scorer.GetComponent<Scorer>().updateScpre(MainManager.Instance.getScore());
     }
 
     // Update is called once per frame
@@ -132,7 +153,8 @@ public class GameManager : MonoBehaviour
 
                 Quaternion randRot = new Quaternion(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f));
 
-                GameObject spawnObject = Instantiate(spawnObjects[i], randLoc, randRot, GameObject.Find("Objects").transform);
+                //GameObject spawnObject = Instantiate(spawnObjects[i], randLoc, randRot, GameObject.Find("Objects").transform);
+                GameObject spawnObject = Instantiate(spawnObjects[i], randLoc, randRot, Objects.transform);
                 //and change its name (to be sure it matches the above check)
                 spawnObject.name = spawnObjects[i].name;
             }
@@ -146,13 +168,16 @@ public class GameManager : MonoBehaviour
 
     public void endGame(bool trayFull = false, bool targetsMet = false)
     {
+
+        int playerScore;
+
         //when the function is called if the tray is full (with non-matching objects)...
         if (trayFull)
         {
             //Debug.Log("Game over (from Manager)");
 
             //get the scene canvas
-            Transform sceneCanv = sceneCanvGO.transform;
+            //Transform sceneCanv = sceneCanvGO.transform;
 
             //string gameOverName = "Game Over";
 
@@ -166,8 +191,15 @@ public class GameManager : MonoBehaviour
             //}
             gameOver.SetActive(true);
 
+            playerScore = Scorer.GetComponent<Scorer>().getScore();
+
+            gameOverScore.GetComponent<Text>().text = "Your Score : " + playerScore;
+
             //reset level to 1
             MainManager.Instance.resetLevel();
+
+            //reset player score in Main Manager
+            MainManager.Instance.resetScore();
 
         }
         //win level
@@ -176,31 +208,49 @@ public class GameManager : MonoBehaviour
             //Debug.Log("All targets met");
 
             //get the scene canvas
-            Transform sceneCanv = sceneCanvGO.transform;
+            //Transform sceneCanv = sceneCanvGO.transform;
 
             //string nextLevName = "Next Level";
 
             //check if the canvas already contains the nextLev object
             //if (!sceneCanv.Find(nextLevName))
             //{
-                //if it doesn't, add the game over object
-              //  GameObject nextLevCanv = Instantiate(nextLev, sceneCanv);
-                //and change its name (to be sure it matches the above check)
-                //nextLevCanv.name = nextLevName;
+            //if it doesn't, add the game over object
+            //  GameObject nextLevCanv = Instantiate(nextLev, sceneCanv);
+            //and change its name (to be sure it matches the above check)
+            //and changedeb its name (to be sure it matches the above check)
+            //nextLevCanv.name = nextLevName;
             //}
+
+            int leftoverTime = Timer.GetComponent<Timer>().getTimer();
+            Scorer.GetComponent<Scorer>().updateScpre(leftoverTime);
+
+            playerScore = Scorer.GetComponent<Scorer>().getScore();
+            nextLevScore.GetComponent<Text>().text = "Your Score : " + playerScore;
+
+
             nextLev.SetActive(true);
 
             //update level to nect level
             MainManager.Instance.moveLevel();
+
+            //update total player score
+            MainManager.Instance.updateScore(playerScore);
         }
 
         //stop the timer
-        GameObject.Find("Timer").GetComponent<Timer>().stopTimer();
+        //GameObject.Find("Timer").GetComponent<Timer>().stopTimer();
+        Timer.GetComponent<Timer>().stopTimer();
+
+        
 
     }
 
     public void checkMatch(string matchName)
     {
+        //add 20 for a match
+        Scorer.GetComponent<Scorer>().updateScpre(20);
+
         for (int i = 0; i < targetObjects.Count; i++)
         {
             if (matchName == targetObjects[i].name)
@@ -208,6 +258,10 @@ public class GameManager : MonoBehaviour
                 targetObjects.RemoveAt(i);
 
                 targetsDisp.GetComponent<TargetDisp>().updateDict(matchName);
+
+                //add additional 30 for a target match
+                Scorer.GetComponent<Scorer>().updateScpre(30);
+
                 break;
             }
 
