@@ -52,8 +52,9 @@ public class MainManager : MonoBehaviour
 
     public void updateScore(int newVal)
     {
-        playerScore = playerScore + newVal;
+        playerScore = newVal;
+        //playerScore = playerScore + newVal;
 
-        Debug.Log("player score = " + playerScore);
+        //Debug.Log("player score = " + playerScore);
     }
 }
