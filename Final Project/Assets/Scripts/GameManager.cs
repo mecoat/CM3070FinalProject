@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 
 
 public class GameManager : MonoBehaviour
@@ -26,6 +28,11 @@ public class GameManager : MonoBehaviour
     GameObject gameOver;
     [SerializeField]
     GameObject nextLev;
+
+    [SerializeField]
+    GameObject gameOverScore;
+    [SerializeField]
+    GameObject nextLevScore;
 
     private List<GameObject> spawnObjects = new List<GameObject>();
     private List<GameObject> targetObjects = new List<GameObject>();
@@ -161,6 +168,9 @@ public class GameManager : MonoBehaviour
 
     public void endGame(bool trayFull = false, bool targetsMet = false)
     {
+
+        int playerScore;
+
         //when the function is called if the tray is full (with non-matching objects)...
         if (trayFull)
         {
@@ -180,6 +190,10 @@ public class GameManager : MonoBehaviour
             //gameOverCanv.name = gameOverName;
             //}
             gameOver.SetActive(true);
+
+            playerScore = Scorer.GetComponent<Scorer>().getScore();
+
+            gameOverScore.GetComponent<Text>().text = "Your Score : " + playerScore;
 
             //reset level to 1
             MainManager.Instance.resetLevel();
@@ -211,13 +225,17 @@ public class GameManager : MonoBehaviour
             int leftoverTime = Timer.GetComponent<Timer>().getTimer();
             Scorer.GetComponent<Scorer>().updateScpre(leftoverTime);
 
+            playerScore = Scorer.GetComponent<Scorer>().getScore();
+            nextLevScore.GetComponent<Text>().text = "Your Score : " + playerScore;
+
+
             nextLev.SetActive(true);
 
             //update level to nect level
             MainManager.Instance.moveLevel();
 
             //update total player score
-            MainManager.Instance.updateScore(Scorer.GetComponent<Scorer>().getScore());
+            MainManager.Instance.updateScore(playerScore);
         }
 
         //stop the timer
