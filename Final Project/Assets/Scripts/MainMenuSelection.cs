@@ -4,7 +4,7 @@ using UnityEngine;
 //https://www.c-sharpcorner.com/article/unity-change-scene-on-button-click-using-c-sharp-scripts-in-unity/
 using UnityEngine.SceneManagement;
 
-public class MenuSelection : MonoBehaviour
+public class MainMenuSelection : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -23,12 +23,6 @@ public class MenuSelection : MonoBehaviour
         //Debug.Log("loading scene");
 
         //loads the gaame
-        SceneManager.LoadScene("GameScene");
-    }
-
-    public void GoToStart()
-    {
-        //goes back to menu
-        SceneManager.LoadScene("StartScene");
+        SceneManager.LoadScene("InstructionScene");
     }
 }
