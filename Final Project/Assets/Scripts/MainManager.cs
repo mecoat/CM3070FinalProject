@@ -105,4 +105,9 @@ public class MainManager : MonoBehaviour
             Debug.Log(highScoreBoard[i]);
         }
     }
+
+    public List<(string, int)> getHighScores()
+    {
+        return highScoreBoard;
+    }
 }
