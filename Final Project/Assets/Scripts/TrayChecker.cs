@@ -67,6 +67,9 @@ public class TrayChecker : MonoBehaviour
                     //remmove from scene
                     this.transform.GetChild(i).gameObject.GetComponent<CollectionObjects>().destroySelf();
                 }
+
+                PlaySounds.SoundInstance.playMatchSound();
+
             }
         }
     }
