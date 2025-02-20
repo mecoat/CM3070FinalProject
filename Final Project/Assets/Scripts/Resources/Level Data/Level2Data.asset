@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Level2Data
   m_EditorClassIdentifier: 
   levelName: Level 2
-  timer: 30
+  timer: 45
   spawnObjects:
   - {fileID: 7951558195484988998, guid: b3943f3b7fef32347814fa162d2edd44, type: 3}
   - {fileID: 7642960949669196145, guid: 86d2f714a2200a345a31940c0acd7cab, type: 3}
