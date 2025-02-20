@@ -34,6 +34,15 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     GameObject nextLevScore;
 
+    [SerializeField]
+    Dropdown inital1;
+    [SerializeField]
+    Dropdown inital2;
+    [SerializeField]
+    Dropdown inital3;
+
+    private string playerInits = "AAA";
+
     private List<GameObject> spawnObjects = new List<GameObject>();
     private List<GameObject> targetObjects = new List<GameObject>();
     private int timer;
@@ -195,6 +204,10 @@ public class GameManager : MonoBehaviour
 
             gameOverScore.GetComponent<Text>().text = "Your Score : " + playerScore;
 
+            //Debug.Log("trayfull called");
+
+            //MainManager.Instance.addToHighScore("MCC", playerScore);
+
             //reset level to 1
             MainManager.Instance.resetLevel();
 
@@ -300,13 +313,39 @@ public class GameManager : MonoBehaviour
 
     public void returnToStart()
     {
+        int playerScore = Scorer.GetComponent<Scorer>().getScore();
+
+        MainManager.Instance.addToHighScore(playerInits, playerScore);
+
         //load the start scene
         SceneManager.LoadScene("StartScene");
     }
 
     public void reloadScene()
     {
-        //load the start scene
+        //load the game scene
         SceneManager.LoadScene("GameScene");
+    }
+
+    public void updatePlayerInits(int indToChange)
+    {
+        string newInit = "";
+
+        if (indToChange == 0)
+        {
+            newInit = inital1.options[inital1.value].text;
+        }
+        else if (indToChange == 1)
+        {
+            newInit = inital2.options[inital2.value].text;
+        }
+        else if (indToChange == 2)
+        {
+            newInit = inital3.options[inital3.value].text;
+        }
+
+        playerInits = playerInits.Remove(indToChange, 1).Insert(indToChange, newInit);
+        Debug.Log(playerInits);
+
     }
 }

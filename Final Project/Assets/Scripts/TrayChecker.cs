@@ -45,6 +45,13 @@ public class TrayChecker : MonoBehaviour
                 //Debug.Log("Game over");
 
                 manager.endGame(true, false);
+
+                //iterate through the tray objects
+                for (int i = 0; i < maxObjects; i++)
+                {
+                    //remmove from scene
+                    this.transform.GetChild(i).gameObject.GetComponent<CollectionObjects>().destroySelf();
+                }
             } 
             else if (match == true)
             {
