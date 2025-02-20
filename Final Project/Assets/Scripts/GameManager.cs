@@ -313,28 +313,39 @@ public class GameManager : MonoBehaviour
 
     public void returnToStart()
     {
+        int playerScore = Scorer.GetComponent<Scorer>().getScore();
+
+        MainManager.Instance.addToHighScore(playerInits, playerScore);
+
         //load the start scene
         SceneManager.LoadScene("StartScene");
     }
 
     public void reloadScene()
     {
-
-        int playerScore = Scorer.GetComponent<Scorer>().getScore();
-
-        MainManager.Instance.addToHighScore(playerInits, playerScore);
-
-        //load the start scene
+        //load the game scene
         SceneManager.LoadScene("GameScene");
     }
 
     public void updatePlayerInits(int indToChange)
     {
-        playerInits = playerInits.Remove(indToChange, 1).Insert(indToChange, "C");
+        string newInit = "";
+
+        if (indToChange == 0)
+        {
+            newInit = inital1.options[inital1.value].text;
+        }
+        else if (indToChange == 1)
+        {
+            newInit = inital2.options[inital2.value].text;
+        }
+        else if (indToChange == 2)
+        {
+            newInit = inital3.options[inital3.value].text;
+        }
+
+        playerInits = playerInits.Remove(indToChange, 1).Insert(indToChange, newInit);
         Debug.Log(playerInits);
-        //inital1.options[inital1.value].text;
-        //playerInits += inital2.options[inital2.value].text;
-        //playerInits += inital3.options[inital3.value].text;
 
     }
 }
