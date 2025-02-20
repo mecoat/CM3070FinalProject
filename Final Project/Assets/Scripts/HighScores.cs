@@ -29,7 +29,7 @@ public class HighScores : MonoBehaviour
         
     }
 
-    string createHighScores(int startVal, List<(string, int)> fullListScores)
+    private string createHighScores(int startVal, List<(string, int)> fullListScores)
     {
         string newText = "";
 
@@ -37,8 +37,6 @@ public class HighScores : MonoBehaviour
 
         for (int i = startVal; i < (startVal + 5); i++)
         {
-            Debug.Log(i);
-
             if (listLength > i)
             {
                 newText += fullListScores[i].Item1 + " " + fullListScores[i].Item2.ToString();
