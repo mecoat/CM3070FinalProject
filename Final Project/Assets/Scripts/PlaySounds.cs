@@ -16,11 +16,27 @@ public class PlaySounds : MonoBehaviour
     //Error by BloodPixelHero -- https://freesound.org/s/572936/ -- License: Creative Commons 0
     public AudioClip loseSound;
 
+    AudioSource sound;
+
+    public static PlaySounds SoundInstance;
+
+
+    private void Awake()
+    {
+        if (SoundInstance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        SoundInstance = this;
+        DontDestroyOnLoad(gameObject);
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        sound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -28,4 +44,19 @@ public class PlaySounds : MonoBehaviour
     {
         
     }
+
+    public void playMatchSound()
+    {
+        sound.PlayOneShot(matchSound);
+    }
+
+    public void playLoseSound()
+    {
+        sound.PlayOneShot(loseSound);
+    }
+
+    //private void playGameSound()
+    //{
+      //  sound.PlayOneShot(gameSound);
+    //}
 }
