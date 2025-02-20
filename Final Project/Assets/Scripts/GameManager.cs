@@ -183,6 +183,8 @@ public class GameManager : MonoBehaviour
         //when the function is called if the tray is full (with non-matching objects)...
         if (trayFull)
         {
+            PlaySounds.SoundInstance.playLoseSound();
+
             //Debug.Log("Game over (from Manager)");
 
             //get the scene canvas
