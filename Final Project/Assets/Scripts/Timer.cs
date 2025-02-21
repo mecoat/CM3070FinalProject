@@ -15,6 +15,8 @@ public class Timer : MonoBehaviour
 
     private bool timerRun = true;
 
+    private bool endGameTriggered = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -58,8 +60,9 @@ public class Timer : MonoBehaviour
 
             timerDisplay.text = disp;
         }
-        else if (remainingTime <= 0)
+        else if (remainingTime <= 0 && !endGameTriggered)
         {
+            endGameTriggered = true;
             manager.endGame(true, false);
         }
 
