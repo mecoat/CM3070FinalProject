@@ -10,13 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1bc8e6e78732a4c44892a243d127dd6a, type: 3}
-  m_Name: Level2Data
+  m_Name: Level4Data
   m_EditorClassIdentifier: 
-  levelName: Level 2
-  timer: 45
+  levelName: Level 4
+  timer: 60
   spawnObjects:
   - {fileID: 7951558195484988998, guid: b3943f3b7fef32347814fa162d2edd44, type: 3}
   - {fileID: 7642960949669196145, guid: 86d2f714a2200a345a31940c0acd7cab, type: 3}
+  - {fileID: 4137123891098534406, guid: 3d3c3382f0cc73a4d87b996d3abb85c5, type: 3}
+  - {fileID: 7642960949669196145, guid: 86d2f714a2200a345a31940c0acd7cab, type: 3}
   targetObjects:
+  - {fileID: 4137123891098534406, guid: 3d3c3382f0cc73a4d87b996d3abb85c5, type: 3}
   - {fileID: 7951558195484988998, guid: b3943f3b7fef32347814fa162d2edd44, type: 3}
   - {fileID: 7642960949669196145, guid: 86d2f714a2200a345a31940c0acd7cab, type: 3}
