@@ -58,6 +58,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     GameObject Objects;
 
+    private int highestLevel = 6;
+    private int levelNum = 1;
 
     private void Awake()
     {
@@ -68,7 +70,8 @@ public class GameManager : MonoBehaviour
     private void GetLevelData()
     {
         //int levelNum = 1;
-        int levelNum = MainManager.Instance.getLevel();
+        //int levelNum = MainManager.Instance.getLevel();
+        levelNum = MainManager.Instance.getLevel();
 
         string levelName = "Level" + levelNum + "Data";
   
@@ -243,14 +246,42 @@ public class GameManager : MonoBehaviour
             playerScore = Scorer.GetComponent<Scorer>().getScore();
             nextLevScore.GetComponent<Text>().text = "Your Score : " + playerScore;
 
+            if (levelNum >= highestLevel)
+            {
+                gameOver.SetActive(true);
 
-            nextLev.SetActive(true);
+                playerScore = Scorer.GetComponent<Scorer>().getScore();
+
+                gameOverScore.GetComponent<Text>().text = "Your Score : " + playerScore;
+
+                //Debug.Log("trayfull called");
+
+                //MainManager.Instance.addToHighScore("MCC", playerScore);
+
+                //reset level to 1
+                MainManager.Instance.resetLevel();
+
+                //reset player score in Main Manager
+                MainManager.Instance.resetScore();
+            } 
+            else
+            {
+                nextLev.SetActive(true);
+
+                //update level to nect level
+                MainManager.Instance.moveLevel();
+
+                //update total player score
+                MainManager.Instance.updateScore(playerScore);
+            }
+
+            //nextLev.SetActive(true);
 
             //update level to nect level
-            MainManager.Instance.moveLevel();
+            //MainManager.Instance.moveLevel();
 
             //update total player score
-            MainManager.Instance.updateScore(playerScore);
+            //MainManager.Instance.updateScore(playerScore);
         }
 
         //stop the timer
