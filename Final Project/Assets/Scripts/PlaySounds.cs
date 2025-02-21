@@ -53,6 +53,7 @@ public class PlaySounds : MonoBehaviour
     public void playLoseSound()
     {
         sound.PlayOneShot(loseSound);
+        Debug.Log("lose Sound");
     }
 
     //private void playGameSound()
