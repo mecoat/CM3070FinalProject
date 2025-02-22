@@ -15,6 +15,6 @@ MonoBehaviour:
   levelName: Level 1
   timer: 30
   spawnObjects:
-  - {fileID: 7642960949669196145, guid: 86d2f714a2200a345a31940c0acd7cab, type: 3}
+  - {fileID: 1000010986879176, guid: 84cd435a6eb03e94c9294fbeab1364dd, type: 3}
   targetObjects:
-  - {fileID: 7642960949669196145, guid: 86d2f714a2200a345a31940c0acd7cab, type: 3}
+  - {fileID: 1000010986879176, guid: 84cd435a6eb03e94c9294fbeab1364dd, type: 3}

@@ -15,10 +15,10 @@ MonoBehaviour:
   levelName: Level 3
   timer: 60
   spawnObjects:
-  - {fileID: 7951558195484988998, guid: b3943f3b7fef32347814fa162d2edd44, type: 3}
-  - {fileID: 7951558195484988998, guid: b3943f3b7fef32347814fa162d2edd44, type: 3}
-  - {fileID: 7642960949669196145, guid: 86d2f714a2200a345a31940c0acd7cab, type: 3}
-  - {fileID: 7642960949669196145, guid: 86d2f714a2200a345a31940c0acd7cab, type: 3}
+  - {fileID: 1000010714891294, guid: 64acdec346b7451438b37b59b7e70cd0, type: 3}
+  - {fileID: 1000010714891294, guid: 64acdec346b7451438b37b59b7e70cd0, type: 3}
+  - {fileID: 1000010728489230, guid: 0a28f87b4a31a774883eacc723e99996, type: 3}
+  - {fileID: 1000010728489230, guid: 0a28f87b4a31a774883eacc723e99996, type: 3}
   targetObjects:
-  - {fileID: 7951558195484988998, guid: b3943f3b7fef32347814fa162d2edd44, type: 3}
-  - {fileID: 7642960949669196145, guid: 86d2f714a2200a345a31940c0acd7cab, type: 3}
+  - {fileID: 1000010714891294, guid: 64acdec346b7451438b37b59b7e70cd0, type: 3}
+  - {fileID: 1000010728489230, guid: 0a28f87b4a31a774883eacc723e99996, type: 3}
