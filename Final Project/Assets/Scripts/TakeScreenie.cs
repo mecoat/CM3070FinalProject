@@ -12,7 +12,7 @@ public class TakeScreenie : MonoBehaviour
     {
         if (Input.GetKeyDown(screenShotButton))
         {
-            ScreenCapture.CaptureScreenshot("screenshot.png");
+            ScreenCapture.CaptureScreenshot("Assets/Scripts/Resources/TargetImages/Yellow Sphere.png");
             Debug.Log("A screenshot was taken!");
         }
     }
