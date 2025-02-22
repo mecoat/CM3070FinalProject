@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 23000012539122088}
   - component: {fileID: -6019470912360993392}
   - component: {fileID: 3206344067521967990}
+  - component: {fileID: -8016685539844097542}
   m_Layer: 0
   m_Name: Blue Heart
   m_TagString: Untagged
@@ -109,3 +110,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b9b5e344d98d0541b3c2a5a523eec0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!64 &-8016685539844097542
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000010714891294}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: f5e70b692f804d346a44df961b6ad5a8, type: 3}
