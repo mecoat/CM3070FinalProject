@@ -24,6 +24,12 @@ public class MainManager : MonoBehaviour
         }
 
         Instance = this;
+
+        for (int i=0; i<10; i++)
+        {
+            addToHighScore("MCC", 42);
+        }
+
         DontDestroyOnLoad(gameObject);
     }
 
@@ -109,5 +115,10 @@ public class MainManager : MonoBehaviour
     public List<(string, int)> getHighScores()
     {
         return highScoreBoard;
+    }
+
+    public int getLowestHighScore()
+    {
+        return (highScoreBoard[highScoreBoard.Count -1].score);
     }
 }

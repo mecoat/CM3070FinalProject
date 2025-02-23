@@ -35,6 +35,9 @@ public class GameManager : MonoBehaviour
     GameObject nextLevScore;
 
     [SerializeField]
+    GameObject gameOverHighScores;
+
+    [SerializeField]
     Dropdown inital1;
     [SerializeField]
     Dropdown inital2;
@@ -226,6 +229,12 @@ public class GameManager : MonoBehaviour
             //Debug.Log("trayfull called");
 
             //MainManager.Instance.addToHighScore("MCC", playerScore);
+
+
+            if (playerScore <= MainManager.Instance.getLowestHighScore())
+            {
+                gameOverHighScores.SetActive(false);
+            }
 
             //reset level to 1
             MainManager.Instance.resetLevel();
