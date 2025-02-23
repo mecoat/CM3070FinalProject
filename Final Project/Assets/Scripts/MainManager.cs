@@ -116,4 +116,9 @@ public class MainManager : MonoBehaviour
     {
         return highScoreBoard;
     }
+
+    public int getLowestHighScore()
+    {
+        return (highScoreBoard[highScoreBoard.Count -1].score);
+    }
 }

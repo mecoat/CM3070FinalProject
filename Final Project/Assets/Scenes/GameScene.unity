@@ -3995,6 +3995,7 @@ MonoBehaviour:
   nextLev: {fileID: 575700063}
   gameOverScore: {fileID: 9159214106541183701}
   nextLevScore: {fileID: 789322087}
+  gameOverHighScores: {fileID: 1298161549}
   inital1: {fileID: 531804407}
   inital2: {fileID: 1334566862}
   inital3: {fileID: 1542380216}
