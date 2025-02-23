@@ -38,7 +38,10 @@ public class CollectorControl : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+
+
         //if the playerMove variable is true (player control is on)
         if (playerMove)
         {
@@ -177,6 +180,8 @@ public class CollectorControl : MonoBehaviour
         //chage hasObject variable to false to indicate that the object has been dropped
         hasObject = false;
 
+        //rb.velocity = Vector3.zero;
+        //rb.angularVelocity = Vector3.zero;
 
         //move to exactly 9 high (for consistency for player)
         //rb.position = new Vector3(rb.transform.position.x, 9, rb.transform.position.z);
