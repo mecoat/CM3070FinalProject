@@ -24,6 +24,12 @@ public class MainManager : MonoBehaviour
         }
 
         Instance = this;
+
+        for (int i=0; i<10; i++)
+        {
+            addToHighScore("MCC", 42);
+        }
+
         DontDestroyOnLoad(gameObject);
     }
 
