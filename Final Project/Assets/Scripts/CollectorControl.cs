@@ -38,7 +38,10 @@ public class CollectorControl : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+
+
         //if the playerMove variable is true (player control is on)
         if (playerMove)
         {
@@ -101,7 +104,7 @@ public class CollectorControl : MonoBehaviour
                     //rb.position = new Vector3(rb.transform.position.x, 9, rb.transform.position.z);
                     rb.position = new Vector3(rb.transform.position.x, 5f, rb.transform.position.z);
 
-                    resetConstraints();
+                    //resetConstraints();
 
                     //return control to player 
                     playerMove = true;
@@ -177,27 +180,29 @@ public class CollectorControl : MonoBehaviour
         //chage hasObject variable to false to indicate that the object has been dropped
         hasObject = false;
 
+        //rb.velocity = Vector3.zero;
+        //rb.angularVelocity = Vector3.zero;
 
         //move to exactly 9 high (for consistency for player)
         //rb.position = new Vector3(rb.transform.position.x, 9, rb.transform.position.z);
         rb.position = new Vector3(rb.transform.position.x, 5f, rb.transform.position.z);
 
-        resetConstraints();
+       // resetConstraints();
     }
 
     //function to reset constraints after being affectedd externally
-    private void resetConstraints()
-    {
+    //private void resetConstraints()
+    //{
         //ensure that collector is properly returned to player control with no drift or rotation...
         //prevent the Rigid body from moving at all (reset anything that may have been added to the collector motion/rotation)
-        rb.constraints = RigidbodyConstraints.FreezeAll;
+        //rb.constraints = RigidbodyConstraints.FreezeAll;
         //remove all constrainst (so the player can have movement again)
-        rb.constraints = RigidbodyConstraints.None;
+        //rb.constraints = RigidbodyConstraints.None;
         //prevent the Rigid body from rotating (so that an uneven cintact will not turn the collector)
-        rb.constraints = RigidbodyConstraints.FreezeRotation;
+        //rb.constraints = RigidbodyConstraints.FreezeRotation;
         //prevent the Rigid body from moving more in y direction (hold the collector at the correct height (and prevent gravity from dropping it))
-        rb.constraints = RigidbodyConstraints.FreezePositionY;
-        rb.transform.rotation = new Quaternion(0f, 0f, 0f, 0f); //resets rotation
-    }
+       // rb.constraints = RigidbodyConstraints.FreezePositionY;
+     //   rb.transform.rotation = new Quaternion(0f, 0f, 0f, 0f); //resets rotation
+   // }
 }
 
