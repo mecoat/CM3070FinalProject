@@ -9,7 +9,9 @@ public class CollectionObjects : MonoBehaviour
     Rigidbody rb;
 
     //bool to hold the dropping status of the object
-    private bool isDropping = false;
+    //private bool isDropping = false;
+    private bool isDropping = true;  // set to true on spawn so that it counts if it lands ins the try on spawn
+
 
     public void transferToCollector(GameObject obj)
     {
