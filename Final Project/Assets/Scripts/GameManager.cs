@@ -38,6 +38,11 @@ public class GameManager : MonoBehaviour
     GameObject gameOverHighScores;
 
     [SerializeField]
+    Button gameOverButton;
+    [SerializeField]
+    Button nextLevButton;
+
+    [SerializeField]
     Dropdown inital1;
     [SerializeField]
     Dropdown inital2;
@@ -114,7 +119,18 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetButtonDown("Fire2"))
+        {
+            if (gameOver.activeInHierarchy)
+            {
+                gameOverButton.onClick.Invoke();
+            } 
+            else if (nextLev.activeInHierarchy)
+            {
+                nextLevButton.onClick.Invoke();
+            }
+                
+        }
     }
 
     private void InitializeLevelData()
