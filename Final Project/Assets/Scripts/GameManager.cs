@@ -133,32 +133,33 @@ public class GameManager : MonoBehaviour
         {
             for (int j = 0; j < maxObjects; j++)
             {
-                int arenaSection = Random.Range(0, 3);
+                //int arenaSection = Random.Range(0, 3);
 
                 //Debug.Log(arenaSection);
 
-                float randX = Random.Range(-2f, 2f);
-                float randZ = Random.Range(-2f, 2f);
+                //float randX = Random.Range(-2f, 2f);
+                //float randZ = Random.Range(-2f, 2f);
 
-                if (arenaSection == 0) // far left corner
-                {
-                    randX = randX - 2;
+                //if (arenaSection == 0) // far left corner
+                //{
+                //  randX = randX - 2;
 
-                    randZ = randZ + 2;
-                }
-                else if (arenaSection == 1) // near left corner
-                {
-                    randX = randX - 2;
+                //randZ = randZ + 2;
+                //}
+                //else if (arenaSection == 1) // near left corner
+                //{
+                //  randX = randX - 2;
 
-                    randZ = randZ - 2;
-                }
-                else if (arenaSection == 2) // near right corner
-                {
-                    randX = randX + 2;
+                //randZ = randZ - 2;
+                //}
+                //else if (arenaSection == 2) // near right corner
+                //{
+                //  randX = randX + 2;
 
-                    randZ = randZ - 2;
-                }
+                //randZ = randZ - 2;
+                //}
 
+                (float randX, float randZ) = getSpawnLoc();
 
                 Vector3 randLoc = new Vector3(randX, 2, randZ);
                 //Debug.Log(randLoc);
@@ -171,6 +172,19 @@ public class GameManager : MonoBehaviour
                 spawnObject.name = spawnObjects[i].name;
             }
         }
+    }
+
+    private (float, float) getSpawnLoc()
+    {
+        float randX = Random.Range(-4f, 4f);
+        float randZ = Random.Range(-4f, 4f) ;
+
+        if (randX > -0.5 && randX <= 4 && randZ > 1.5 && randZ <= 4)
+        {
+            (randX, randZ) = getSpawnLoc();
+        }
+
+        return (randX, randZ);
     }
 
     public int getMaxObjects()
