@@ -88,5 +88,79 @@ public class HighScoreInput : MonoBehaviour
             if (input2Loc < 0) { input2Loc = inputChars.Count - 1; };
             if (input2Loc >= inputChars.Count) { input2Loc = 0; };
         }
+
+        updateActiveDisp();
+    }
+
+    private void updateActiveDisp()
+    {
+        if (activeInput == 0)
+        {
+            if (input0Loc == 0)
+            {
+                input0[1].GetComponent<Text>().text = inputChars[inputChars.Count -1];
+            } 
+            else
+            {
+                input0[1].GetComponent<Text>().text = inputChars[input0Loc - 1];
+            }
+
+            input0[2].GetComponent<Text>().text = inputChars[input0Loc];
+
+            if (input0Loc == inputChars.Count -1)
+            {
+                input0[3].GetComponent<Text>().text = inputChars[0];
+            }
+            else
+            {
+                input0[3].GetComponent<Text>().text = inputChars[input0Loc + 1];
+            }
+
+        }
+        else if (activeInput == 1)
+        {
+            if (input0Loc == 0)
+            {
+                input1[1].GetComponent<Text>().text = inputChars[inputChars.Count - 1];
+            }
+            else
+            {
+                input1[1].GetComponent<Text>().text = inputChars[input1Loc - 1];
+            }
+
+            input1[2].GetComponent<Text>().text = inputChars[input1Loc];
+
+            if (input0Loc == inputChars.Count - 1)
+            {
+                input1[3].GetComponent<Text>().text = inputChars[0];
+            }
+            else
+            {
+                input1[3].GetComponent<Text>().text = inputChars[input1Loc + 1];
+            }
+
+        }
+        else if (activeInput == 2)
+        {
+            if (input0Loc == 0)
+            {
+                input2[1].GetComponent<Text>().text = inputChars[inputChars.Count - 1];
+            }
+            else
+            {
+                input2[1].GetComponent<Text>().text = inputChars[input2Loc - 1];
+            }
+
+            input2[2].GetComponent<Text>().text = inputChars[input2Loc];
+
+            if (input0Loc == inputChars.Count - 1)
+            {
+                input2[3].GetComponent<Text>().text = inputChars[0];
+            }
+            else
+            {
+                input2[3].GetComponent<Text>().text = inputChars[input2Loc + 1];
+            }
+        }
     }
 }
