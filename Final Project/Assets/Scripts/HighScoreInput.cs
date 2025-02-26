@@ -38,21 +38,25 @@ public class HighScoreInput : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 input0Loc -= 1;
+                checkInputLoc();
                 Debug.Log(input0Loc);
             } 
             else if (Input.GetKeyDown(KeyCode.DownArrow))
             {
                 input0Loc += 1;
+                checkInputLoc();
                 Debug.Log(input0Loc);
             } 
             else if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 activeInput -= 1;
+                checkActiveInput();
                 Debug.Log(activeInput);
             }
             else if (Input.GetKeyDown(KeyCode.RightArrow))
             {
                 activeInput += 1;
+                checkActiveInput();
                 Debug.Log(activeInput);
             }
 
@@ -60,5 +64,29 @@ public class HighScoreInput : MonoBehaviour
         
     }
 
+    private void checkActiveInput()
+    {
+        if (activeInput < 0) { activeInput = 2; };
+        if (activeInput > 2) { activeInput = 0; };
+    }
     
+    private void checkInputLoc()
+    {
+
+        if (activeInput == 0)
+        {
+            if (input0Loc < 0) { input0Loc = inputChars.Count - 1; };
+            if (input0Loc >= inputChars.Count) { input0Loc = 0; };
+        }
+        else if (activeInput == 1)
+        {
+            if (input1Loc < 0) { input1Loc = inputChars.Count - 1; };
+            if (input1Loc >= inputChars.Count) { input1Loc = 0; };
+        }
+        else if (activeInput == 2)
+        {
+            if (input2Loc < 0) { input2Loc = inputChars.Count - 1; };
+            if (input2Loc >= inputChars.Count) { input2Loc = 0; };
+        }
+    }
 }
