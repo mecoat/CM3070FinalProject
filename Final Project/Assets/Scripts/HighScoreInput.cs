@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class HighScoreInput : MonoBehaviour
 {
@@ -20,10 +22,12 @@ public class HighScoreInput : MonoBehaviour
     List<GameObject> input2;
     private int input2Loc = 0;
 
+    private int activeInput = 0;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -31,19 +35,30 @@ public class HighScoreInput : MonoBehaviour
     {
         if (input0[0].activeInHierarchy)
         {
-            if (Input.GetAxisRaw ("Vertical") >0)
+            if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 input0Loc -= 1;
                 Debug.Log(input0Loc);
             } 
-            else if (Input.GetAxisRaw("Vertical") < 0)
+            else if (Input.GetKeyDown(KeyCode.DownArrow))
             {
                 input0Loc += 1;
                 Debug.Log(input0Loc);
-
+            } 
+            else if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                activeInput -= 1;
+                Debug.Log(activeInput);
+            }
+            else if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                activeInput += 1;
+                Debug.Log(activeInput);
             }
 
         }
         
     }
+
+    
 }
