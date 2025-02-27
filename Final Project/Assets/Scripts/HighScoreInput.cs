@@ -37,14 +37,14 @@ public class HighScoreInput : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                input0Loc -= 1;
-                checkInputLoc();
+                //input0Loc -= 1;
+                updateInputLoc(-1);
                 Debug.Log(input0Loc);
             } 
             else if (Input.GetKeyDown(KeyCode.DownArrow))
             {
-                input0Loc += 1;
-                checkInputLoc();
+                //input0Loc += 1;
+                updateInputLoc(1);
                 Debug.Log(input0Loc);
             } 
             else if (Input.GetKeyDown(KeyCode.LeftArrow))
@@ -73,21 +73,26 @@ public class HighScoreInput : MonoBehaviour
 
     }
 
-    private void checkInputLoc()
+    private void updateInputLoc(int valToChange)
     {
 
         if (activeInput == 0)
         {
+            input0Loc += valToChange;
             if (input0Loc < 0) { input0Loc = inputChars.Count - 1; };
             if (input0Loc >= inputChars.Count) { input0Loc = 0; };
         }
         else if (activeInput == 1)
         {
+            input1Loc += valToChange;
+
             if (input1Loc < 0) { input1Loc = inputChars.Count - 1; };
             if (input1Loc >= inputChars.Count) { input1Loc = 0; };
         }
         else if (activeInput == 2)
         {
+            input2Loc += valToChange;
+
             if (input2Loc < 0) { input2Loc = inputChars.Count - 1; };
             if (input2Loc >= inputChars.Count) { input2Loc = 0; };
         }
@@ -122,7 +127,7 @@ public class HighScoreInput : MonoBehaviour
         }
         else if (activeInput == 1)
         {
-            if (input0Loc == 0)
+            if (input1Loc == 0)
             {
                 input1[1].GetComponent<Text>().text = inputChars[inputChars.Count - 1];
             }
@@ -133,7 +138,7 @@ public class HighScoreInput : MonoBehaviour
 
             input1[2].GetComponent<Text>().text = inputChars[input1Loc];
 
-            if (input0Loc == inputChars.Count - 1)
+            if (input1Loc == inputChars.Count - 1)
             {
                 input1[3].GetComponent<Text>().text = inputChars[0];
             }
@@ -146,7 +151,7 @@ public class HighScoreInput : MonoBehaviour
         }
         else if (activeInput == 2)
         {
-            if (input0Loc == 0)
+            if (input2Loc == 0)
             {
                 input2[1].GetComponent<Text>().text = inputChars[inputChars.Count - 1];
             }
@@ -157,7 +162,7 @@ public class HighScoreInput : MonoBehaviour
 
             input2[2].GetComponent<Text>().text = inputChars[input2Loc];
 
-            if (input0Loc == inputChars.Count - 1)
+            if (input2Loc == inputChars.Count - 1)
             {
                 input2[3].GetComponent<Text>().text = inputChars[0];
             }
@@ -177,7 +182,7 @@ public class HighScoreInput : MonoBehaviour
         }
         else
         {
-            input0[0].GetComponent<Image>().color = new Color(255, 0, 0);
+            input0[0].GetComponent<Image>().color = new Color32(255, 100, 100, 255);
         }
 
         if (activeInput == 1)
@@ -186,7 +191,7 @@ public class HighScoreInput : MonoBehaviour
         }
         else
         {
-            input1[0].GetComponent<Image>().color = new Color(255, 0, 0);
+            input1[0].GetComponent<Image>().color = new Color32(255, 100, 100, 255);
         }
 
         if (activeInput == 2)
@@ -195,7 +200,7 @@ public class HighScoreInput : MonoBehaviour
         }
         else
         {
-            input2[0].GetComponent<Image>().color = new Color(255, 0, 0);
+            input2[0].GetComponent<Image>().color = new Color32(255, 100, 100, 255);
         }
     }
 }
