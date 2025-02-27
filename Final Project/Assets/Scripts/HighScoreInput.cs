@@ -203,4 +203,9 @@ public class HighScoreInput : MonoBehaviour
             input2[0].GetComponent<Image>().color = new Color32(255, 100, 100, 255);
         }
     }
+
+    public string getUserInits()
+    {
+        return (inputChars[input0Loc] + inputChars[input1Loc] + inputChars[input2Loc]);
+    }
 }

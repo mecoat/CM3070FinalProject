@@ -42,12 +42,15 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     Button nextLevButton;
 
+   // [SerializeField]
+    //Dropdown inital1;
+    //[SerializeField]
+    //Dropdown inital2;
+    //[SerializeField]
+    //Dropdown inital3;
+
     [SerializeField]
-    Dropdown inital1;
-    [SerializeField]
-    Dropdown inital2;
-    [SerializeField]
-    Dropdown inital3;
+    GameObject highScoreInput;
 
     private string playerInits = "AAA";
 
@@ -387,6 +390,8 @@ public class GameManager : MonoBehaviour
     {
         int playerScore = Scorer.GetComponent<Scorer>().getScore();
 
+        playerInits = highScoreInput.GetComponent<HighScoreInput>().getUserInits();
+
         MainManager.Instance.addToHighScore(playerInits, playerScore);
 
         //load the start scene
@@ -399,25 +404,25 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("GameScene");
     }
 
-    public void updatePlayerInits(int indToChange)
-    {
-        string newInit = "";
+   // public void updatePlayerInits(int indToChange)
+    //{
+     //   string newInit = "";
 
-        if (indToChange == 0)
-        {
-            newInit = inital1.options[inital1.value].text;
-        }
-        else if (indToChange == 1)
-        {
-            newInit = inital2.options[inital2.value].text;
-        }
-        else if (indToChange == 2)
-        {
-            newInit = inital3.options[inital3.value].text;
-        }
+//        if (indToChange == 0)
+  //      {
+    //        newInit = inital1.options[inital1.value].text;
+      //  }
+        //else if (indToChange == 1)
+        //{
+         //   newInit = inital2.options[inital2.value].text;
+        //}
+        //else if (indToChange == 2)
+        //{
+         //   newInit = inital3.options[inital3.value].text;
+       // }
 
-        playerInits = playerInits.Remove(indToChange, 1).Insert(indToChange, newInit);
-        Debug.Log(playerInits);
+//        playerInits = playerInits.Remove(indToChange, 1).Insert(indToChange, newInit);
+  //      Debug.Log(playerInits);
 
-    }
+    //}
 }
