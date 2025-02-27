@@ -68,8 +68,11 @@ public class HighScoreInput : MonoBehaviour
     {
         if (activeInput < 0) { activeInput = 2; };
         if (activeInput > 2) { activeInput = 0; };
+
+        updateActiveBackground();
+
     }
-    
+
     private void checkInputLoc()
     {
 
@@ -139,6 +142,7 @@ public class HighScoreInput : MonoBehaviour
                 input1[3].GetComponent<Text>().text = inputChars[input1Loc + 1];
             }
 
+
         }
         else if (activeInput == 2)
         {
@@ -161,6 +165,37 @@ public class HighScoreInput : MonoBehaviour
             {
                 input2[3].GetComponent<Text>().text = inputChars[input2Loc + 1];
             }
+        }
+    }
+
+
+    private void updateActiveBackground()
+    {
+        if (activeInput == 0)
+        {
+            input0[0].GetComponent<Image>().color = new Color(0, 255, 0);
+        }
+        else
+        {
+            input0[0].GetComponent<Image>().color = new Color(255, 0, 0);
+        }
+
+        if (activeInput == 1)
+        {
+            input1[0].GetComponent<Image>().color = new Color(0, 255, 0);
+        }
+        else
+        {
+            input1[0].GetComponent<Image>().color = new Color(255, 0, 0);
+        }
+
+        if (activeInput == 2)
+        {
+            input2[0].GetComponent<Image>().color = new Color(0, 255, 0);
+        }
+        else
+        {
+            input2[0].GetComponent<Image>().color = new Color(255, 0, 0);
         }
     }
 }
