@@ -27,10 +27,14 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     GameObject gameOver;
     [SerializeField]
+    GameObject gameEnd;
+    [SerializeField]
     GameObject nextLev;
 
     [SerializeField]
     GameObject gameOverScore;
+    [SerializeField]
+    GameObject gameEndScore;
     [SerializeField]
     GameObject nextLevScore;
 
@@ -41,8 +45,10 @@ public class GameManager : MonoBehaviour
     Button gameOverButton;
     [SerializeField]
     Button nextLevButton;
+    [SerializeField]
+    Button gameEndButton;
 
-   // [SerializeField]
+    // [SerializeField]
     //Dropdown inital1;
     //[SerializeField]
     //Dropdown inital2;
@@ -69,7 +75,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     GameObject Objects;
 
-    private int highestLevel = 6;
+    private int highestLevel = 1;
     private int levelNum = 1;
 
     private void Awake()
@@ -217,6 +223,8 @@ public class GameManager : MonoBehaviour
     public void endGame(bool trayFull = false, bool targetsMet = false)
     {
 
+        
+
         int playerScore;
 
         //when the function is called if the tray is full (with non-matching objects)...
@@ -250,9 +258,10 @@ public class GameManager : MonoBehaviour
             //MainManager.Instance.addToHighScore("MCC", playerScore);
 
 
-            if (playerScore <= MainManager.Instance.getLowestHighScore())
+            if (playerScore > MainManager.Instance.getLowestHighScore())
             {
                 gameOverHighScores.SetActive(false);
+                highScoreInput.SetActive(true);
             }
 
             //reset level to 1
@@ -290,15 +299,21 @@ public class GameManager : MonoBehaviour
 
             if (levelNum >= highestLevel)
             {
-                gameOver.SetActive(true);
+                gameEnd.SetActive(true);
 
                 playerScore = Scorer.GetComponent<Scorer>().getScore();
 
-                gameOverScore.GetComponent<Text>().text = "Your Score : " + playerScore;
+                gameEndScore.GetComponent<Text>().text = "Your Score : " + playerScore;
 
                 //Debug.Log("trayfull called");
 
                 //MainManager.Instance.addToHighScore("MCC", playerScore);
+
+                if (playerScore > MainManager.Instance.getLowestHighScore())
+                {
+                    //gameOverHighScores.SetActive(false);
+                    highScoreInput.SetActive(true);
+                }
 
                 //reset level to 1
                 MainManager.Instance.resetLevel();
