@@ -23,6 +23,8 @@ public class CollectorControl : MonoBehaviour
     //boolean to indicate the object has been deposited in the tray
     //private bool hasDeposited = false;
 
+    private bool endLevel = false;
+
       // Start is called before the first frame update
     void Start()
     {
@@ -43,7 +45,7 @@ public class CollectorControl : MonoBehaviour
 
 
         //if the playerMove variable is true (player control is on)
-        if (playerMove)
+        if (playerMove & !endLevel)
         {
             //Get the values of the player input and assign them to variables (raw means that there is no drift when the player stops pressing the button)
             float movementZ = Input.GetAxisRaw("Vertical");
@@ -204,5 +206,10 @@ public class CollectorControl : MonoBehaviour
        // rb.constraints = RigidbodyConstraints.FreezePositionY;
      //   rb.transform.rotation = new Quaternion(0f, 0f, 0f, 0f); //resets rotation
    // }
+
+    public void stopMovement()
+    {
+        endLevel = true;
+    }
 }
 

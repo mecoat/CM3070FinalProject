@@ -27,10 +27,14 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     GameObject gameOver;
     [SerializeField]
+    GameObject gameEnd;
+    [SerializeField]
     GameObject nextLev;
 
     [SerializeField]
     GameObject gameOverScore;
+    [SerializeField]
+    GameObject gameEndScore;
     [SerializeField]
     GameObject nextLevScore;
 
@@ -38,11 +42,24 @@ public class GameManager : MonoBehaviour
     GameObject gameOverHighScores;
 
     [SerializeField]
-    Dropdown inital1;
+    Button gameOverButton;
     [SerializeField]
-    Dropdown inital2;
+    Button nextLevButton;
     [SerializeField]
-    Dropdown inital3;
+    Button gameEndButton;
+
+    // [SerializeField]
+    //Dropdown inital1;
+    //[SerializeField]
+    //Dropdown inital2;
+    //[SerializeField]
+    //Dropdown inital3;
+
+    [SerializeField]
+    GameObject highScoreInput;
+
+    [SerializeField]
+    GameObject collector;
 
     private string playerInits = "AAA";
 
@@ -114,7 +131,22 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetButtonDown("Fire2"))
+        {
+            if (gameOver.activeInHierarchy)
+            {
+                gameOverButton.onClick.Invoke();
+            } 
+            else if (nextLev.activeInHierarchy)
+            {
+                nextLevButton.onClick.Invoke();
+            }
+            else if (gameEnd.activeInHierarchy)
+            {
+                gameEndButton.onClick.Invoke();
+            }
+
+        }
     }
 
     private void InitializeLevelData()
@@ -198,6 +230,8 @@ public class GameManager : MonoBehaviour
     public void endGame(bool trayFull = false, bool targetsMet = false)
     {
 
+        collector.GetComponent<CollectorControl>().stopMovement();
+
         int playerScore;
 
         //when the function is called if the tray is full (with non-matching objects)...
@@ -231,9 +265,10 @@ public class GameManager : MonoBehaviour
             //MainManager.Instance.addToHighScore("MCC", playerScore);
 
 
-            if (playerScore <= MainManager.Instance.getLowestHighScore())
+            if (playerScore > MainManager.Instance.getLowestHighScore())
             {
                 gameOverHighScores.SetActive(false);
+                highScoreInput.SetActive(true);
             }
 
             //reset level to 1
@@ -271,15 +306,21 @@ public class GameManager : MonoBehaviour
 
             if (levelNum >= highestLevel)
             {
-                gameOver.SetActive(true);
+                gameEnd.SetActive(true);
 
                 playerScore = Scorer.GetComponent<Scorer>().getScore();
 
-                gameOverScore.GetComponent<Text>().text = "Your Score : " + playerScore;
+                gameEndScore.GetComponent<Text>().text = "Your Score : " + playerScore;
 
                 //Debug.Log("trayfull called");
 
                 //MainManager.Instance.addToHighScore("MCC", playerScore);
+
+                if (playerScore > MainManager.Instance.getLowestHighScore())
+                {
+                    //gameOverHighScores.SetActive(false);
+                    highScoreInput.SetActive(true);
+                }
 
                 //reset level to 1
                 MainManager.Instance.resetLevel();
@@ -371,6 +412,8 @@ public class GameManager : MonoBehaviour
     {
         int playerScore = Scorer.GetComponent<Scorer>().getScore();
 
+        playerInits = highScoreInput.GetComponent<HighScoreInput>().getUserInits();
+
         MainManager.Instance.addToHighScore(playerInits, playerScore);
 
         //load the start scene
@@ -383,25 +426,25 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("GameScene");
     }
 
-    public void updatePlayerInits(int indToChange)
-    {
-        string newInit = "";
+   // public void updatePlayerInits(int indToChange)
+    //{
+     //   string newInit = "";
 
-        if (indToChange == 0)
-        {
-            newInit = inital1.options[inital1.value].text;
-        }
-        else if (indToChange == 1)
-        {
-            newInit = inital2.options[inital2.value].text;
-        }
-        else if (indToChange == 2)
-        {
-            newInit = inital3.options[inital3.value].text;
-        }
+//        if (indToChange == 0)
+  //      {
+    //        newInit = inital1.options[inital1.value].text;
+      //  }
+        //else if (indToChange == 1)
+        //{
+         //   newInit = inital2.options[inital2.value].text;
+        //}
+        //else if (indToChange == 2)
+        //{
+         //   newInit = inital3.options[inital3.value].text;
+       // }
 
-        playerInits = playerInits.Remove(indToChange, 1).Insert(indToChange, newInit);
-        Debug.Log(playerInits);
+//        playerInits = playerInits.Remove(indToChange, 1).Insert(indToChange, newInit);
+  //      Debug.Log(playerInits);
 
-    }
+    //}
 }
