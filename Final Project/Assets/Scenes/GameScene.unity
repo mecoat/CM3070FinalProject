@@ -535,6 +535,7 @@ MonoBehaviour:
   nextLevButton: {fileID: 8254190121034927789}
   gameEndButton: {fileID: 2108163944718122734}
   highScoreInput: {fileID: 2038231144371194486}
+  collector: {fileID: 5974697481602817860}
   Objects: {fileID: 1552671808}
 --- !u!4 &1966163209
 Transform:
@@ -854,6 +855,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67230a567933dfb47ac0038bbb3c0ef1, type: 3}
+--- !u!1 &5974697481602817860 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 516090612826586685, guid: 67230a567933dfb47ac0038bbb3c0ef1,
+    type: 3}
+  m_PrefabInstance: {fileID: 5974697481602817859}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7023361390593266095
 PrefabInstance:
   m_ObjectHideFlags: 0

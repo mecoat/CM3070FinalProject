@@ -58,6 +58,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     GameObject highScoreInput;
 
+    [SerializeField]
+    GameObject collector;
+
     private string playerInits = "AAA";
 
     private List<GameObject> spawnObjects = new List<GameObject>();
@@ -227,7 +230,7 @@ public class GameManager : MonoBehaviour
     public void endGame(bool trayFull = false, bool targetsMet = false)
     {
 
-        
+        collector.GetComponent<CollectorControl>().stopMovement();
 
         int playerScore;
 
