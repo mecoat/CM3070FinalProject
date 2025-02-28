@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     GameObject Objects;
 
-    private int highestLevel = 1;
+    private int highestLevel = 6;
     private int levelNum = 1;
 
     private void Awake()
@@ -138,7 +138,11 @@ public class GameManager : MonoBehaviour
             {
                 nextLevButton.onClick.Invoke();
             }
-                
+            else if (gameEnd.activeInHierarchy)
+            {
+                gameEndButton.onClick.Invoke();
+            }
+
         }
     }
 
