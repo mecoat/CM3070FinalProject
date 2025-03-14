@@ -66,6 +66,11 @@ public class Timer : MonoBehaviour
             manager.endGame(true, false);
         }
 
+        if (remainingTime < 25)
+        {
+            RenderSettings.skybox.SetColor("_Tint", Color.red);
+        }
+
     }
 
     public void setTimer(int timeVal)
