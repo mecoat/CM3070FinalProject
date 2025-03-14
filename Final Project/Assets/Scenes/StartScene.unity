@@ -1370,7 +1370,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameSound: {fileID: 8300000, guid: 40c899c0b9dd4424dbbe2c989a1dff4d, type: 3}
   matchSound: {fileID: 8300000, guid: 6f15c61daa4323c458f37cac0aa9864c, type: 3}
-  loseSound: {fileID: 8300000, guid: 3e5a6db6e172db94bb0fec4142b58660, type: 3}
+  loseSound: {fileID: 8300000, guid: 55b5944401746b04c9cbc81826d84015, type: 3}
 --- !u!82 &1727312496
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1381,7 +1381,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 40c899c0b9dd4424dbbe2c989a1dff4d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: b1d556247b3e0dd42997d50fe83fa752, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
