@@ -178,29 +178,29 @@ public class HighScoreInput : MonoBehaviour
     {
         if (activeInput == 0)
         {
-            input0[0].GetComponent<Image>().color = new Color(0, 255, 0);
+            input0[0].GetComponent<Image>().color = new Color32(108, 207, 246, 255);
         }
         else
         {
-            input0[0].GetComponent<Image>().color = new Color32(255, 100, 100, 255);
+            input0[0].GetComponent<Image>().color = new Color32(239, 91, 91, 255);
         }
 
         if (activeInput == 1)
         {
-            input1[0].GetComponent<Image>().color = new Color(0, 255, 0);
+            input1[0].GetComponent<Image>().color = new Color32(108, 207, 246, 255);
         }
         else
         {
-            input1[0].GetComponent<Image>().color = new Color32(255, 100, 100, 255);
+            input1[0].GetComponent<Image>().color = new Color32(239, 91, 91, 255);
         }
 
         if (activeInput == 2)
         {
-            input2[0].GetComponent<Image>().color = new Color(0, 255, 0);
+            input2[0].GetComponent<Image>().color = new Color32(108, 207, 246, 255);
         }
         else
         {
-            input2[0].GetComponent<Image>().color = new Color32(255, 100, 100, 255);
+            input2[0].GetComponent<Image>().color = new Color32(239, 91, 91, 255);
         }
     }
 
