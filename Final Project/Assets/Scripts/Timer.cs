@@ -16,6 +16,8 @@ public class Timer : MonoBehaviour
     private bool timerRun = true;
 
     private bool endGameTriggered = false;
+    private bool timeWarning1Triggered = false;
+    private bool timeWarning2Triggered = false;
 
 
     // Start is called before the first frame update
@@ -64,6 +66,19 @@ public class Timer : MonoBehaviour
         {
             endGameTriggered = true;
             manager.endGame(true, false);
+        }
+
+        if (remainingTime < 5 && !timeWarning2Triggered)
+        {
+            Debug.Log("Change to red");
+            //RenderSettings.skybox.SetColor("_Tint", Color.red);
+            Camera.main.backgroundColor = new Color32(152, 11, 42, 255);
+            timeWarning2Triggered = true;
+        } else if (remainingTime < 10 && !timeWarning1Triggered)
+        {
+            Debug.Log("Change to orange");
+            Camera.main.backgroundColor = new Color32(163, 90, 0, 255);
+            timeWarning1Triggered = true;
         }
 
     }

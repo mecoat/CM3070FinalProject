@@ -20,7 +20,7 @@ public class MenuSelection : MonoBehaviour
 
     public void StartGame()
     {
-        //Debug.Log("loading scene");
+        Debug.Log("loading scene");
 
         //loads the gaame
         SceneManager.LoadScene("GameScene");
@@ -28,6 +28,7 @@ public class MenuSelection : MonoBehaviour
 
     public void GoToStart()
     {
+        Debug.Log("return");
         //goes back to menu
         SceneManager.LoadScene("StartScene");
     }
