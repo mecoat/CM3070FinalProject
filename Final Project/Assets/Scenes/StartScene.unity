@@ -1024,7 +1024,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Collect matching pairs of objects into the tray with the collector.  \nComplete
+  m_Text: "Collect matching pairs of objects into the tray with the wand.  \nComplete
     the target matches before time runs out."
 --- !u!222 &1363522976
 CanvasRenderer:
