@@ -20,9 +20,7 @@ public class CollectorControl : MonoBehaviour
     //boolean to indiicate if the collector as collected an object
     private bool hasObject = false;
 
-    //boolean to indicate the object has been deposited in the tray
-    //private bool hasDeposited = false;
-
+    //boolean to indicate that the level has ended
     private bool endLevel = false;
 
       // Start is called before the first frame update
@@ -32,19 +30,14 @@ public class CollectorControl : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    //fixed update runs on a set schedule depending on the frequency of the frame updates (so this runs the same speed on different devices regardless of frame rate)
     private void FixedUpdate()
     {
+        //reset the velocities of movement and rotation (to prevent undesired movement, such as drift after depositing an object)
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
 
-
-        //if the playerMove variable is true (player control is on)
+        //if the playerMove variable is true (player control is on) and endLevel is false (the level has not ended)
         if (playerMove & !endLevel)
         {
             //Get the values of the player input and assign them to variables (raw means that there is no drift when the player stops pressing the button)
@@ -76,10 +69,9 @@ public class CollectorControl : MonoBehaviour
                 //drop the object
                 dropObject();
             }
-
         }
 
-        //if the playerMove variable of false (player control is off)
+        //if the playerMove variable is false (player control is off)
         if (!playerMove)
         {
             // if variable isDropping is true (collector is dropping)
@@ -90,7 +82,7 @@ public class CollectorControl : MonoBehaviour
                 //adjust the position of the collector RigidBody by adding the new variable to current location vector
                 rb.MovePosition(transform.position + dropPos);
             }
-            //otherwise (collector is not dropping (and needs to rise)...
+            //otherwise, collector is not dropping (and needs to rise)...
             else 
             {
                 //create a vector with a positive y value (upwards)
@@ -98,19 +90,14 @@ public class CollectorControl : MonoBehaviour
                 //adjust the position of the collector RigidBody by adding the new variable to current location vector
                 rb.MovePosition(transform.position + raisePos);
 
-                //if the rigid body y position is greater than or equal to 9 (home height)
+                //if the rigid body y position is greater than or equal to 5 (home height)
                 if (rb.transform.position.y >= 5)
-                //if (rb.transform.position.y >= 9)
-                    {
-                    //move to exactly 9 high (for consistency for player)
-                    //rb.position = new Vector3(rb.transform.position.x, 9, rb.transform.position.z);
+                {
+                    //move to exactly 5 high (for consistency for player)
                     rb.position = new Vector3(rb.transform.position.x, 5f, rb.transform.position.z);
-
-                    //resetConstraints();
 
                     //return control to player 
                     playerMove = true;
-
                 }
             }
         }
@@ -124,9 +111,6 @@ public class CollectorControl : MonoBehaviour
         //place a contrasint to prevent rotation
         rb.constraints = RigidbodyConstraints.FreezeRotation;
 
-        //output to console to show what's happening)
-        //Debug.Log("Dropping collector");
-
         //chage isDroppping variable to true to indicate that the collector is dropping
         isDropping = true;
     }
@@ -134,81 +118,47 @@ public class CollectorControl : MonoBehaviour
     //when a collision occurs
     private void OnCollisionEnter(Collision collision)
     {
-        //output the tag of the element collided with to the console
-        //Debug.Log(collision.gameObject.tag);
-
-        //if the collision with with something that has the tag of "Object" (and also is dropping (to prevent recollecting an object immediately on release)
+        //if the collision is with something that has the tag of "Object" (and also isDropping (to prevent recollecting an object immediately on release))
         if (collision.gameObject.tag == "Object"  && isDropping)
         {
-
             //check the collector hasn't already collected something 
             if (!hasObject)
             {
                 //change hasObject to true (indicates that the object is collected)
                 hasObject = true;
-                //More to add here to actually collect the object
-                //Debug.Log(collision.gameObject);
+
+                //run transferToCollector function on the object that has been collided with
                 collision.gameObject.GetComponent<CollectionObjects>().transferToCollector(this.gameObject);
 
                 //change isdropping to false (we do not want to the object to continue down)
                 isDropping = false;
-                //output to console to show what's happening)
-                //Debug.Log("collecting object");
             }
-
-            
         }
-        //otherwise, if the collector isDropping (ie not moving sideways and colliding with walls...
+        //otherwise, if the collector isDropping (ie not moving sideways and colliding with walls), but not collided with an object (eg collision with floor of arena or tray)...
         else if (isDropping)
         {
             //change isdropping to false (we do not want to the object to continue down)
             isDropping = false;
-            //output to console to show what's happening)
-            //Debug.Log("Dropped, no object");
         }
     }
 
     //function to drop the object fronm the collector
     private void dropObject()
     {
-
-        //output to console to show what's happening)
-        //Debug.Log("Dropping object");
-
-        // code here to drop the object
-        //Debug.Log(this.gameObject.GetComponentInChildren<CollectionObjects>());
+        //call dropFromCollector on the object that is a part of the collector
         this.gameObject.GetComponentInChildren<CollectionObjects>().dropFromCollector();
 
         //chage hasObject variable to false to indicate that the object has been dropped
         hasObject = false;
 
-        //rb.velocity = Vector3.zero;
-        //rb.angularVelocity = Vector3.zero;
-
-        //move to exactly 9 high (for consistency for player)
-        //rb.position = new Vector3(rb.transform.position.x, 9, rb.transform.position.z);
+        //move to exactly 5 high (for consistency for player)
         rb.position = new Vector3(rb.transform.position.x, 5f, rb.transform.position.z);
-
-       // resetConstraints();
     }
 
-    //function to reset constraints after being affectedd externally
-    //private void resetConstraints()
-    //{
-        //ensure that collector is properly returned to player control with no drift or rotation...
-        //prevent the Rigid body from moving at all (reset anything that may have been added to the collector motion/rotation)
-        //rb.constraints = RigidbodyConstraints.FreezeAll;
-        //remove all constrainst (so the player can have movement again)
-        //rb.constraints = RigidbodyConstraints.None;
-        //prevent the Rigid body from rotating (so that an uneven cintact will not turn the collector)
-        //rb.constraints = RigidbodyConstraints.FreezeRotation;
-        //prevent the Rigid body from moving more in y direction (hold the collector at the correct height (and prevent gravity from dropping it))
-       // rb.constraints = RigidbodyConstraints.FreezePositionY;
-     //   rb.transform.rotation = new Quaternion(0f, 0f, 0f, 0f); //resets rotation
-   // }
-
+    //function to stop movement if the level is ended (to prevent movement if the player continues to press (eg with a high score)
     public void stopMovement()
     {
+        //change end level to true
         endLevel = true;
     }
 }
