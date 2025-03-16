@@ -6,23 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuSelection : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    //function to load the instructions scene
     public void StartGame()
     {
-        //Debug.Log("loading scene");
-
-        //loads the gaame
+        //loads the instructions page
         SceneManager.LoadScene("InstructionScene");
     }
 }
