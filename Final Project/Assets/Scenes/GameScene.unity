@@ -590,6 +590,16 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1966163208}
+    - target: {fileID: 799307222852503018, guid: 182c7339d63d8d645ac6a67388b44042,
+        type: 3}
+      propertyPath: manager
+      value: 
+      objectReference: {fileID: 1966163208}
+    - target: {fileID: 799307222852503018, guid: 182c7339d63d8d645ac6a67388b44042,
+        type: 3}
+      propertyPath: timerDisplay
+      value: 
+      objectReference: {fileID: 2108163944718122737}
     - target: {fileID: 1640717079363435105, guid: 182c7339d63d8d645ac6a67388b44042,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -720,6 +730,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5596545815472853907, guid: 182c7339d63d8d645ac6a67388b44042,
+        type: 3}
+      propertyPath: targetHolder
+      value: 
+      objectReference: {fileID: 5835832362673321545}
     - target: {fileID: 6366232237583652712, guid: 182c7339d63d8d645ac6a67388b44042,
         type: 3}
       propertyPath: m_IsActive
@@ -756,6 +771,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2108163944718122733}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2108163944718122737 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2309797883947301670, guid: 182c7339d63d8d645ac6a67388b44042,
+    type: 3}
+  m_PrefabInstance: {fileID: 2108163944718122733}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2610869807920960354 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4141657656464928143, guid: 182c7339d63d8d645ac6a67388b44042,
@@ -868,6 +895,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3147468736538539955, guid: 38f5a41d9e719e94eac21e6abaf36526,
+        type: 3}
+      propertyPath: manager
+      value: 
+      objectReference: {fileID: 1966163208}
     - target: {fileID: 4136810457911001997, guid: 38f5a41d9e719e94eac21e6abaf36526,
         type: 3}
       propertyPath: m_Name

@@ -6,30 +6,17 @@ using UnityEngine.SceneManagement;
 
 public class MenuSelection : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    //function to load the game
     public void StartGame()
     {
-        Debug.Log("loading scene");
-
-        //loads the gaame
+        //loads the gaame scene
         SceneManager.LoadScene("GameScene");
     }
 
+    //function to return to the start scene
     public void GoToStart()
     {
-        Debug.Log("return");
-        //goes back to menu
+        //goes back to start scene
         SceneManager.LoadScene("StartScene");
     }
 }
