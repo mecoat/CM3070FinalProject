@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+//using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 
 public class InstructionsKeyListener : MonoBehaviour
@@ -21,7 +23,7 @@ public class InstructionsKeyListener : MonoBehaviour
         if (Input.GetButtonDown("Fire2"))
         {
             //run the function for when the Start Game button is clicked
-            StartGameButton.onClick.Invoke();
+            StartGameButton.onClick.Invoke(); 
         }
 
         //if the Fire1 (Left Ctrl) is pressed
