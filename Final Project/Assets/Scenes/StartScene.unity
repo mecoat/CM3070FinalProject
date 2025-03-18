@@ -229,7 +229,7 @@ VideoPlayer:
   m_AspectRatio: 2
   m_DataSource: 0
   m_PlaybackSpeed: 1
-  m_AudioOutputMode: 0
+  m_AudioOutputMode: 2
   m_TargetAudioSources:
   - {fileID: 0}
   m_DirectAudioVolumes:
@@ -250,7 +250,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 276718440}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -7, z: 494}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1506,7 +1506,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 034f233e63f6af5418eb502fe3b78d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameSound: {fileID: 8300000, guid: 40c899c0b9dd4424dbbe2c989a1dff4d, type: 3}
   matchSound: {fileID: 8300000, guid: 6f15c61daa4323c458f37cac0aa9864c, type: 3}
   loseSound: {fileID: 8300000, guid: 55b5944401746b04c9cbc81826d84015, type: 3}
 --- !u!82 &1727312496
